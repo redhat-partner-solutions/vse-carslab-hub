@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: assisted-service-config
+  namespace: multicluster-engine
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
+data:
+  LOG_LEVEL: "debug"
+  SUPPORT_L2: "false"
+  DISABLED_HOST_VALIDATIONS: "belongs-to-machine-cidr,belongs-to-majority-group"
+  ISO_IMAGE_TYPE: "full-iso"
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: AgentServiceConfig
+metadata:
+  name: agent
+  annotations:
+    # yamllint disable-line rule:line-length
+    unsupported.agent-install.openshift.io/assisted-service-configmap: 'assisted-service-config'
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  databaseStorage:
+    # bug, leave default class for now
+    # storageClassName: lso-blockclass
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
+  filesystemStorage:
+    # bug, leave default class for now
+    # storageClassName: lso-filesystemclass
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
+  osImages:
+    - openshiftVersion: "4.8"
+      cpuArchitecture: x86_64
+      version: "48.84.202107202156-0"
+      # yamllint disable rule:line-length
+      url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.8/4.8.14/rhcos-4.8.14-x86_64-live.x86_64.iso"
+      rootFSUrl: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.8/4.8.14/rhcos-4.8.14-x86_64-live-rootfs.x86_64.img"
+      # yamllint enable rule:line-length
+    - openshiftVersion: "4.9"
+      cpuArchitecture: x86_64
+      version: "49.84.202110081407-0"
+      # yamllint disable rule:line-length
+      url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.9/4.9.0/rhcos-4.9.0-x86_64-live.x86_64.iso"
+      rootFSUrl: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.9/4.9.0/rhcos-4.9.0-x86_64-live-rootfs.x86_64.img"
+      # yamllint enable rule:line-length
+    - openshiftVersion: "4.10"
+      cpuArchitecture: x86_64
+      version: "410.84.202201251210-0"
+      # yamllint disable rule:line-length
+      url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.10/4.10.16/rhcos-4.10.16-x86_64-live.x86_64.iso"
+      rootFSUrl: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.10/4.10.16/rhcos-4.10.16-x86_64-live-rootfs.x86_64.img"
+      # yamllint enable rule:line-length

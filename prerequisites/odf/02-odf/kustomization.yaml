@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Set up OpenShift Data Fabric Operator
+  - ./00-namespace.yaml
+  - ./01-subscription.yaml
+  # set up storage cluster
+  - ./02-storage-cluster.yaml
+  # set permission to patch storageclass
+  - ./03-job-sa-role.yaml
+  # patch using patch operator
+  - ./04-patch-default-storage-class.yaml
+  # patch using job
+  #- ./04-default-storage-class-job.yaml

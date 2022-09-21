@@ -1,0 +1,123 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-super1
+  labels:
+    cluster-name: blazer-nmstate
+spec:
+  config:
+    interfaces:
+      - name: enp1s0
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+            - ip: 10.50.56.121
+              prefix-length: 24
+          enabled: true
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2056::121
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 10.50.56.1
+          next-hop-interface: enp1s0
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2056::1
+          next-hop-interface: enp1s0
+  interfaces:
+    - name: enp1s0
+      macAddress: DE:AD:BE:EF:A0:1D
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-super2
+  labels:
+    cluster-name: blazer-nmstate
+spec:
+  config:
+    interfaces:
+      - name: enp1s0
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+            - ip: 10.50.56.122
+              prefix-length: 24
+          enabled: true
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2056::122
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 10.50.56.1
+          next-hop-interface: enp1s0
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2056::1
+          next-hop-interface: enp1s0
+  interfaces:
+    - name: enp1s0
+      macAddress: DE:AD:BE:EF:9D:47
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-super3
+  labels:
+    cluster-name: blazer-nmstate
+spec:
+  config:
+    interfaces:
+      - name: enp1s0
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+            - ip: 10.50.56.123
+              prefix-length: 24
+          enabled: true
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2056::123
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 10.50.56.1
+          next-hop-interface: enp1s0
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2056::1
+          next-hop-interface: enp1s0
+  interfaces:
+    - name: enp1s0
+      macAddress: DE:AD:BE:EF:C8:86

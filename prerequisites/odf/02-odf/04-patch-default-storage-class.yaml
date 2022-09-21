@@ -1,0 +1,24 @@
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: Patch
+metadata:
+  name: default-storage-class
+  namespace: openshift-storage
+spec:
+  serviceAccountRef:
+    name: cli-job-sa
+  patches:
+    default-storage-class:
+      targetObjectRef:
+        apiVersion: storage.k8s.io/v1
+        kind: StorageClass
+        name: ocs-storagecluster-ceph-rbd
+        namespace: openshift-storage
+      # yamllint disable rule:line-length
+      patchTemplate: |
+        metadata:
+          annotations:
+            description: "Provides RWO Filesystem volumes, and RWO and RWX Block volumes"
+            storageclass.kubernetes.io/is-default-class: "true"
+      # yamllint enable rule:line-length
+      patchType: application/strategic-merge-patch+json

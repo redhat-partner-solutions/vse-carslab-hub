@@ -1,0 +1,16 @@
+- op: replace
+  path: /spec/bootMACAddress
+  value: 'DE:AD:BE:EF:A0:1D'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: redfish-virtualmedia+http://kvmhost2.remote-skylark-ldc1.cars.lab:8082/redfish/v1/Systems/ca1a85d9-4bc2-5e86-af84-c39aac30c0e5
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: blazer-cars-lab-bmc-super1
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: blazer-cars-lab-infraenv
+- op: replace
+  path: /metadata/name
+  value: blazer-cars-lab-super1

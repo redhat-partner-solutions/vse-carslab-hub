@@ -1,0 +1,9 @@
+- op: replace
+  path: /spec/clusterName
+  value: 'blazer-cars-lab'
+- op: replace
+  path: /spec/clusterNamespace
+  value: 'blazer-cars-lab'
+- op: replace
+  path: /metadata/name
+  value: blazer-cars-lab

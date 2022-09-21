@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  # common manifests
+  - ../../base
+patches:
+
+  - target:
+      kind: LocalVolumeSet
+      name: local-block
+    patch: |-
+     - op: add
+       path: '/spec/deviceInclusionSpec'
+       value: {"deviceMechanicalProperties" : ["Rotational"]}

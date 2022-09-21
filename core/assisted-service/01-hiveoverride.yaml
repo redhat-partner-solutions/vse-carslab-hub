@@ -1,0 +1,16 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: HiveConfig
+metadata:
+  name: hive
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  featureGates:
+    custom:
+      enabled:
+        - AlphaAgentInstallStrategy
+    featureSet: Custom
+  logLevel: debug
+  targetNamespace: hive

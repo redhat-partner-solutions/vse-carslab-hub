@@ -1,0 +1,15 @@
+- op: replace
+  path: /spec/clusterRef/name
+  value: 'blazer-cars-lab'
+- op: replace
+  path: /spec/clusterRef/namespace
+  value: 'blazer-cars-lab'
+- op: replace
+  path: '/spec/nmStateConfigLabelSelector/matchLabels/cluster-name'
+  value: 'blazer-nmstate'
+- op: replace
+  path: '/spec/pullSecretRef/name'
+  value: 'assisted-deployment-pull-secret'
+- op: replace
+  path: /metadata/name
+  value: blazer-cars-lab-infraenv
