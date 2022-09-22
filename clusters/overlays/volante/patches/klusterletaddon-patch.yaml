@@ -1,0 +1,10 @@
+---
+- op: replace
+  path: /spec/clusterName
+  value: 'volante-cars-lab'
+- op: replace
+  path: /spec/clusterNamespace
+  value: 'volante-cars-lab'
+- op: replace
+  path: /metadata/name
+  value: 'volante-cars-lab'
