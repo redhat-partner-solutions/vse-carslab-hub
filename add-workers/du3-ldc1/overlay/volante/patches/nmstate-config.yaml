@@ -1,0 +1,66 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-day2-worker1
+  labels:
+    cluster-name: volante-cars-lab
+spec:
+  config:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: down
+      - name: eno2
+        type: ethernet
+        state: down
+      - name: eno3
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+            - ip: 172.17.0.183
+              prefix-length: 24
+          enabled: true
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2060::183
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+      - name: eno4
+        type: ethernet
+        state: down
+      - name: enp25s0f0
+        type: ethernet
+        state: down
+      - name: enp25s0f1
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 172.17.0.1
+          next-hop-interface: eno3
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2060::1
+          next-hop-interface: eno3
+  interfaces:
+    - name: eno1
+      macAddress: "3c:ec:ef:30:52:9a"
+    - name: eno2
+      macAddress: "3c:ec:ef:30:52:9b"
+    - name: eno3
+      macAddress: "3c:ec:ef:2d:33:7e"
+    - name: eno4
+      macAddress: "3c:ec:ef:2d:33:7f"
+    - name: enp25s0f0
+      macAddress: "3c:ec:ef:2d:33:7c"
+    - name: enp25s0f1
+      macAddress: "3c:ec:ef:2d:33:7d"

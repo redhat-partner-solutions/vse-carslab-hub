@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - core-components-appset.yaml
   - clusters-appset.yaml
+  - worker-nodes-appset.yaml

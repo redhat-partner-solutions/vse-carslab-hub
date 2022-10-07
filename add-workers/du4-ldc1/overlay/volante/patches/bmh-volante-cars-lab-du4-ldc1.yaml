@@ -1,0 +1,23 @@
+---
+- op: replace
+  path: /spec/bootMACAddress
+  value: '3C:EC:EF:2D:7F:B2'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: redfish-virtualmedia://172.28.11.45/redfish/v1/Systems/1/
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: bmc-du4-ldc1-volante-cars-lab
+- op: replace
+  path: /spec/bmc/disableCertificateVerification
+  value: true
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: infraenv
+- op: replace
+  path: /metadata/name
+  value: du4-ldc1-volante-cars-lab
+- op: replace
+  path: /metadata/annotations/bmac.agent-install.openshift.io~1hostname
+  value: "du4-ldc1"

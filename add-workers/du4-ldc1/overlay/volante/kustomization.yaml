@@ -1,0 +1,45 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: volante-cars-lab
+
+resources:
+  - github.com/redhat-partner-solutions/vse-ocp-bases/base/1-worker?ref=main
+
+patchesStrategicMerge:
+  - ./patches/nmstate-config.yaml
+
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+    patch: |-
+      - op: replace
+        path: /metadata/labels/name
+        value: 'volante-cars-lab'
+  - target:
+      kind: Secret
+      name: bmc-day2-worker1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'bmc-du4-ldc1-volante-cars-lab'
+  - target:
+      kind: BareMetalHost
+      name: bmh-day2-worker1
+    path: ./patches/bmh-volante-cars-lab-du4-ldc1.yaml
+  - target:
+      kind: Provisioning
+      name: provisioning-configuration
+    patch: |-
+      - op: replace
+        path: '/spec/disableVirtualMediaTLS'
+        value: true
+  - target:
+      kind: NMStateConfig
+      name: nmstate-day2-worker1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'nmstate-du4-ldc1-volante-cars-lab'
