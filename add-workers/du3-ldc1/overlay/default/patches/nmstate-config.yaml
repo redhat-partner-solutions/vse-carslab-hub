@@ -4,7 +4,7 @@ kind: NMStateConfig
 metadata:
   name: nmstate-day2-worker1
   labels:
-    cluster-name: volante-cars-lab
+    cluster-name: workload-cluster-name
 spec:
   config:
     interfaces:
