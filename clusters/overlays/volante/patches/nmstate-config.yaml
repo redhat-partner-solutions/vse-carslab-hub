@@ -86,7 +86,7 @@ kind: NMStateConfig
 metadata:
   name: nmstate-super3
   labels:
-    cluster-name: blazer-nmstate
+    cluster-name: volante-nmstate
 spec:
   config:
     interfaces:

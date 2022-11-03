@@ -4,11 +4,12 @@ kind: Kustomization
 
 namespace: volante-cars-lab
 
-bases:
-  - github.com/redhat-partner-solutions/vse-ocp-bases/base/3-node?ref=main
+resources:
+  - github.com/jnunyez/vse-ocp-bases/base/3-node?ref=formating-string-bool
 
 patchesStrategicMerge:
   - ./patches/nmstate-config.yaml
+  - ./patches/aci.yaml
 
 patches:
   - target:
@@ -29,10 +30,8 @@ patches:
         value: 'volante-cars-lab'
   - target:
       kind: SealedSecret
-    patch: |-
-      - op: replace
-        path: /spec/template/metadata/namespace
-        value: 'volante-cars-lab'
+      name: assisted-deployment-pull-secret
+    path: ./patches/pullsecret-sealed-patch.yaml
   - target:
       kind: Secret
       name: bmc-super1
@@ -81,3 +80,10 @@ patches:
   - target:
       kind: KlusterletAddonConfig
     path: ./patches/klusterletaddon-patch.yaml
+  - target:
+      kind: Provisioning
+      name: provisioning-configuration
+    patch: |-
+      - op: replace
+        path: /spec/disableVirtualMediaTLS
+        value: true
