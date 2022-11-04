@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: volante-cars-lab
 
 resources:
-  - github.com/jnunyez/vse-ocp-bases/base/3-node?ref=formating-string-bool
+  - github.com/redhat-partner-solutions/vse-ocp-bases/base/3-node?ref=main
 
 patchesStrategicMerge:
   - ./patches/nmstate-config.yaml
