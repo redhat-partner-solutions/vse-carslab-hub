@@ -38,7 +38,7 @@ spec:
           next-hop-interface: enp1s0
   interfaces:
     - name: enp1s0
-      macAddress: DE:AD:BE:EF:D0:D7
+      macAddress: DE:AD:BE:EF:77:DA
 ---
 apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
