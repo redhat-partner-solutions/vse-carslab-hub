@@ -10,6 +10,7 @@ bases:
 
 patchesStrategicMerge:
   - ./patches/nmstate-config.yaml
+  - ./patches/aci.yaml
 
 patches:
   - target:

@@ -5,13 +5,13 @@
 - op: replace
   path: /spec/bmc/address
   # yamllint disable-line rule:line-length
-  value: redfish-virtualmedia+http://kvmhost2.remote-skylark-ldc1.cars.lab:8082/redfish/v1/Systems/2a143c67-0ad4-5522-9943-ecaeb27f4b43
+  value: redfish-virtualmedia+https://kvmhost2.remote-skylark-ldc1.cars.lab:8082/redfish/v1/Systems/2a143c67-0ad4-5522-9943-ecaeb27f4b43
 - op: replace
   path: /spec/bmc/credentialsName
   value: volante-cars-lab-bmc-super1
 - op: replace
   path: /metadata/labels/infraenvs.agent-install.openshift.io
-  value: volante-cars-lab-infraenv
+  value: infraenv
 - op: replace
   path: /metadata/name
   value: volante-cars-lab-super1
