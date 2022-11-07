@@ -1,0 +1,14 @@
+---
+- op: replace
+  path: /spec/bootMACAddress
+  value: 'AC:1F:6B:E1:80:86'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: redfish-virtualmedia://172.28.11.39/redfish/v1/Systems/1/
+- op: replace
+  path: /spec/bmc/disableCertificateVerification
+  value: true
+- op: replace
+  path: /metadata/annotations/bmac.agent-install.openshift.io~1hostname
+  value: "du1-fec1"

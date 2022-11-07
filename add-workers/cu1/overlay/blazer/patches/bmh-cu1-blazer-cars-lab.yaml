@@ -1,0 +1,10 @@
+---
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: bmc-cu1-blazer-cars-lab
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: infraenv
+- op: replace
+  path: /metadata/name
+  value: cu1-blazer-cars-lab

@@ -1,0 +1,66 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-day2-worker1
+  labels:
+    cluster-name: workload-cluster-name
+spec:
+  config:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: down
+      - name: eno2
+        type: ethernet
+        state: down
+      - name: ens2f0
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+            - ip: 172.18.0.151
+              prefix-length: 24
+          enabled: true
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2061::151
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+      - name: ens2f1
+        type: ethernet
+        state: down
+      - name: ens1f0
+        type: ethernet
+        state: down
+      - name: ens1f1
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 172.18.0.1
+          next-hop-interface: ens2f0
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2061::1
+          next-hop-interface: ens2f0
+  interfaces:
+    - name: eno1
+      macAddress: "3c:ec:ef:1d:a0:ee"
+    - name: eno2
+      macAddress: "3c:ec:ef:1d:a0:ef"
+    - name: ens1f0
+      macAddress: "50:7c:6f:01:65:80"
+    - name: ens1f1
+      macAddress: "50:7c:6f:01:65:81"
+    - name: ens2f0
+      macAddress: "ac:1f:6b:e1:80:86"
+    - name: ens2f1
+      macAddress: "ac:1f:6b:e1:80:87"
