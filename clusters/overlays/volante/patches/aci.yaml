@@ -1,0 +1,27 @@
+---
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: cluster
+  namespace: cluster-name
+spec:
+  apiVIP: 10.50.57.98
+  ingressVIP: 10.50.57.99
+  clusterDeploymentRef:
+    name: volante-cars-lab
+  imageSetRef:
+    name: img4.10.18-x86-64-appsub
+  networking:
+    clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+      - cidr: fd01::/48
+        hostPrefix: 64
+    serviceNetwork:
+      - 172.30.0.0/16
+      - fd02::/112
+    machineNetwork:
+      - cidr: 10.50.57.0/24
+      - cidr: fd00:6:6:2057::0/64
+  # yamllint disable-line rule:line-length
+  sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFC9CIV1mjDw9VRgfDyPJUNm1BAzjK7xD6JdZeYydYFIbqEN0t+iFK0pEcaj83wuU2HBvd32IHfYJYuHxzkXun2t1h5SPKmyIzQEFGhxWEWDqhzYefHuNU94adpk82qsHssDxNVhDPSZFIc6L/6K3YQyBmeHkC5Pq+NYIk0M+VOGgWXIob+yH8A3mIdN3e3GWPdUIJqFS40BVqfsZIUuUHv9RHYqrCjoJKDlbTO5kFcr5esAyjPX9P7uPCgGgQ4Omtol4G4nzYsti3IpT5dC4IigWkFqb4qwYevn+dkIB7Ju/X43iyylku9ftBf0SkUCylwZJ0JjGmh5avZBAJJS3DTPWQDualOekiD1edlN+b0RQq02iPv945KEh3KDPjf0DSb2GTr0+8GuVWOAzT0slUNV70mmEKkBsk84TD4TPVcSD5E7iogEA6HGaXIY7ab2D2qDpGGnf8u9N4taxpXm4ZmOOBnz4dVMtF6fvzUPfzP9rChVVc8dRFtIW1yARTBtML2yww12XRbsOvq6vAVWJHLfWLycNWbWy8ZSs080/a1auymyWrqfYYO62CYtpNIIO95WpVzl2itL6NZvG9d8VGtjEN6MsSlKy/Lx4x+zS0N3MFVKorZ464zz48oCe8za0hLW5yp5PkudEtVhk1GXq4KrrqNk+A/Ofhdre8H6N9Ew=='

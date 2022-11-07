@@ -13,7 +13,7 @@
   value: 'assisted-deployment-pull-secret'
 - op: replace
   path: /metadata/name
-  value: 'blazer-cars-lab'
-# - op: replace
-#   path: /spec/baseDomain
-#   value: 'cars.lab'
+  value: 'volante-cars-lab'
+- op: replace
+  path: /spec/baseDomain
+  value: 'cars.lab'
