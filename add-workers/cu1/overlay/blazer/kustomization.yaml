@@ -1,0 +1,41 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: blazer-cars-lab
+
+resources:
+  - ../default/
+
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+    patch: |-
+      - op: replace
+        path: /metadata/labels/name
+        value: 'blazer-cars-lab'
+  - target:
+      kind: Secret
+      name: bmc-day2-worker1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'bmc-cu1-blazer-cars-lab'
+  - target:
+      kind: BareMetalHost
+      name: bmh-day2-worker1
+    path: ./patches/bmh-cu1-blazer-cars-lab.yaml
+  - target:
+      kind: NMStateConfig
+      name: nmstate-day2-worker1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'nmstate-cu1-blazer-cars-lab'
+  - target:
+      kind: NMStateConfig
+    patch: |-
+      - op: replace
+        path: /metadata/labels/cluster-name
+        value: 'blazer-cars-lab'
