@@ -1,0 +1,60 @@
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: nmstate-day2-worker1
+  labels:
+    cluster-name: workload-cluster-name
+spec:
+  config:
+    interfaces:
+      - name: bondctlplane
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 10.50.0.151
+              prefix-length: 24
+        ipv6:
+          enabled: true
+          address:
+            - ip: fd00:6:6:2052::151
+              prefix-length: 64
+          autoconf: false
+          dhcp: false
+        link-aggregation:
+          mode: 802.3ad
+          options:
+            lacp_rate: "fast"
+          slaves:
+            - ens1f1
+            - ens7f0
+      - name: ens1f0
+        type: ethernet
+        state: down
+      - name: ens7f1
+        type: ethernet
+        state: down
+    dns-resolver:
+      config:
+        server:
+          - 10.40.0.100
+          - fd00:6:6:11::52
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 10.50.0.1
+          next-hop-interface: bondctlplane
+        - destination: ::/0
+          next-hop-address: fd00:6:6:2052::1
+          next-hop-interface: bondctlplane
+  interfaces:
+    - name: "ens1f0"
+      macAddress: "40:a6:b7:3a:e9:80"
+    - name: "ens1f1"
+      macAddress: "40:a6:b7:3a:e9:81"
+    - name: "ens7f0"
+      macAddress: "40:a6:b7:3a:cf:d0"
+    - name: "ens7f1"
+      macAddress: "40:a6:b7:3a:cf:d1"

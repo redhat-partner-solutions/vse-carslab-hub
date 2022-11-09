@@ -1,0 +1,14 @@
+---
+- op: replace
+  path: /spec/bootMACAddress
+  value: '40:A6:B7:3A:CF:D0'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: idrac-virtualmedia://172.28.11.34/redfish/v1/Systems/System.Embedded.1
+- op: replace
+  path: /spec/bmc/disableCertificateVerification
+  value: true
+- op: replace
+  path: /metadata/annotations/bmac.agent-install.openshift.io~1hostname
+  value: "cu1"
