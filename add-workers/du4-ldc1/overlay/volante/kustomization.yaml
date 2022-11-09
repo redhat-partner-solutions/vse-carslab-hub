@@ -38,4 +38,4 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/labels/cluster-name
-        value: 'volante-cars-lab'
+        value: 'volante-nmstate'
