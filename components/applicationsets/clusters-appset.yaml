@@ -7,7 +7,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
+        repoURL: https://github.com/hhamid93/vse-carslab-hub.git
         revision: main
         directories:
           - path: clusters/overlays/*
@@ -27,7 +27,7 @@ spec:
             factor: 2
             maxDuration: 5m
       source:
-        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
+        repoURL: https://github.com/hhamid93/vse-carslab-hub.git
         targetRevision: main
         path: '{{path}}'
       destination:

@@ -1,0 +1,67 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: rna4
+
+bases:
+  - 
+
+patchesStrategicMerge:
+  - ./patches/nmstate-config.yaml
+
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+    patch: |-
+      - op: replace
+        path: /metadata/labels/name
+        value: 'rna4'
+  - target:
+      kind: AgentClusterInstall
+    patch: |-
+      - op: replace
+        path: /spec/clusterDeploymentRef/name
+        value: 'rna4'
+      - op: replace
+        path: /metadata/name
+        value: 'rna4'
+      - op: replace
+        path: /spec/sshPublicKey
+        value: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLtSGf4htAx6VaP5+1MPLH+KhLHE716IWq2Ji5+UvNYBBbWEyj/GSKYhXSGRoOlwXmQRKxGA48W0nZPwg+2BEv8pA2z2RUSvHMBMCK46mT2EcxZeYylHdbamoCJcL5nv/lCDJ/erPCCrgWAaNHGV843ulRpK6kBTGoNwIYY47tOi56tJ1nKpq4zetsgcfUp9aCr9HmWqk94o3o0FQTo4sHAY07zB7udGod4qgawsSj4VpQfTi0Zvx03qPWg3/6gLN17J/nPMzoixA1Vxn234mvNsalwyHPpnCojN/gyDpSACHX4emQBzaXUdeph6HY9GahTcGdJ4GVqOn9SP9u0QpWN5f546N5elE4MnU9DajYWu9DckH0XQP4nwm0Am0Dy5dmBZZZzwjebNSZTiE8z/ldLkqCbdOZEYpXmtmJ6YR71ZHZSESSZEheSEo5PQR3spAxlUnz87X9/7pG2wQyLvvpfCB0iTHCksr6+c6kkAsS/75k1TXZEiUIUwAea+PQd4E= core@metal3'
+  - target:
+      kind: SealedSecret
+    patch: |-
+      - op: replace
+        path: /spec/template/metadata/namespace
+        value: 'rna4'
+  - target:
+      kind: Secret
+      name: rna4-bmc-secret
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'rna4-bmc-secret'
+  - target:
+      kind: ManagedCluster
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'rna4'
+      - op: replace
+        path: /metadata/namespace
+        value: 'rna4'
+  - target:
+      kind: BareMetalHost
+      name: metal1
+    path: ./patches/bmh-rna4-patch.yaml
+  - target:
+      kind: ClusterDeployment
+    path: ./patches/clusterdeployment-patch.yaml
+  - target:
+      kind: InfraEnv
+    path: ./patches/infraenv-patch.yaml
+  - target:
+      kind: KlusterletAddonConfig
+    path: ./patches/klusterletaddon-patch.yaml

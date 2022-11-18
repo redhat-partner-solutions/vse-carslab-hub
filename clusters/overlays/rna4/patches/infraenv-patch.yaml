@@ -1,0 +1,21 @@
+- op: replace
+  path: /spec/clusterRef/name
+  value: 'rna4'
+- op: replace
+  path: /spec/clusterRef/namespace
+  value: 'rna4'
+- op: replace
+  path: '/spec/nmStateConfigLabelSelector/matchLabels/cluster-name'
+  value: 'rna4'
+- op: replace
+  path: '/spec/agentLabelSelector/matchLabels/cluster-name'
+  value: 'rna4-nmstate'  
+- op: replace
+  path: '/spec/pullSecretRef/name'
+  value: 'assisted-deployment-pull-secret'
+- op: replace
+  path: '/spec/sshAuthorizedKey'
+  value: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDj6nYU3zv/dpP6a8s+IRdLxf2j5KJqr7+9DfdeJgFxm2yHdgbzpGuMKwY1OYX6lmYvS6WtNBZagEi4NAy/gmSu4kfA/XdBA4NENE4VHD1vzyXEF5DCo5jk/dhgKKFIqWytFPdWxcbl7Y0WWnhhHdRYfCfqf0Y36ITVSbcL+KlNCbcS+FoC+QxCfP2YwJ6iB/RGvp547IwhTajDkjWmsLeNyEzsFxc3AaHwKvoLbp3UpsDQv6UfQiYItzPMpI06mNsWCQ7Xf/OGyX88osc2uc2AVuJEMWb9WVtqz0krfJDaUdc1/wbBziGjqeUF/FdcnR5ZSbdEmLw1fnS5a5Td1ilm9kkzj20jsFIDj0cNkhCV943tknyzy/Q4A+2rQxxjtOqo4EQUhJ0j0ngcnB8mUsOuE3xCJ0TVX9O2tEvxjH8Lpi8dVUopKFD+Ff570kIeIx2BOGkSJgubo8hSjQ23MIHNhv8HQJhfJn32nV7z/atrhmsXWHjly5BfStSw/P+R9iZWaJ95XlCW2XSrYTqCS60zq17ePJNIaRYWEhF7CWbw/KFeugftqy0Ow8HEBKP9XQtHJTc16PoyU1yy21n4oeaVoHULQO+WV8zpizKbvP1JT5h61lVF7+8oqdn034Kp25pUEe93wnag+Naz/D1ZlwD0N+GTXEQJaPJEbSkWEP5pyQ=='
+- op: replace
+  path: /metadata/name
+  value: infraenv-rna4

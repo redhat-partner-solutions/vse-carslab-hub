@@ -1,0 +1,43 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: rna4-nmstate
+  namespace: rna4
+  labels:
+    cluster-name: rna4-nmstate
+spec:
+  config:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+          - ip: 10.10.10.10
+            prefix-length: 24
+          enabled: true
+      - name: eno2
+        type: ethernet
+        state: up
+        ipv4:
+          address:
+          - ip: 10.19.6.20
+            prefix-length: 24
+          enabled: true
+    dns-resolver:
+      config:
+        server:
+          - 10.19.6.21
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 10.19.6.254
+          next-hop-interface: eno2
+#        - destination: 10.19.7.0/24
+#          next-hop-address: 10.19.7.30
+#          next-hop-interface: eno2
+  interfaces:
+    - name: eno2
+      macAddress: "B8:59:9F:B1:11:C5"
+    - name: eno1
+      macAddress: "B8:59:9F:B1:11:C4"

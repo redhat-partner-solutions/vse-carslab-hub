@@ -1,0 +1,15 @@
+- op: replace
+  path: /spec/clusterInstallRef/name
+  value: 'rna4'
+- op: replace
+  path: '/spec/platform/agentBareMetal/agentSelector/matchLabels/cluster-name'
+  value: 'rna4'
+- op: replace
+  path: /spec/clusterName
+  value: 'rna4'
+- op: replace
+  path: '/spec/pullSecretRef/name'
+  value: 'assisted-deployment-pull-secret'
+- op: replace
+  path: /metadata/name
+  value: rna4

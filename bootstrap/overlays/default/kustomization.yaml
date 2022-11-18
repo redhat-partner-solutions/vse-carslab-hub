@@ -8,3 +8,5 @@ resources:
 # - ../../../components/argocdproj
   - openshift-gitops-argocd.yaml
   - openshift-gitops-rbac-policy.yaml
+  - gitops-policy-rolebinding.yaml
+  - gitops-cluster-rolebinding.yaml

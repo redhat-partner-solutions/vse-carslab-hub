@@ -1,0 +1,12 @@
+- op: replace
+  path: /spec/clusterName
+  value: 'rna4'
+- op: replace
+  path: /spec/clusterNamespace
+  value: 'rna4'
+- op: replace
+  path: /metadata/name
+  value: klusterletaddonconfig-rna4
+- op: replace
+  path: /metadata/namespace
+  value: rna4

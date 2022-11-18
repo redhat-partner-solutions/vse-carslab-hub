@@ -1,0 +1,16 @@
+- op: replace
+  path: /spec/bootMACAddress
+  value: 'B8:59:9F:B1:11:C5'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: redfish-virtualmedia://10.19.143.120/redfish/v1/Systems/System.Embedded.1/
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: rna4-bmc-secret
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: infraenv-rna4
+- op: replace
+  path: /metadata/name
+  value: metal1

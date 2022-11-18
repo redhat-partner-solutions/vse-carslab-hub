@@ -6,3 +6,7 @@ resources:
   - core-components-appset.yaml
   - clusters-appset.yaml
   #- worker-nodes-appset.yaml
+  - app-project.yaml
+  - policies-app-project.yaml
+  - clusters-app.yaml
+  - policies-app.yaml
