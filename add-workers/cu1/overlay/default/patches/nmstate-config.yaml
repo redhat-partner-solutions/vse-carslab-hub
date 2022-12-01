@@ -10,6 +10,7 @@ spec:
     interfaces:
       - name: bondctlplane
         type: bond
+        mac-address: "40:a6:b7:3a:cf:d0"
         state: up
         ipv4:
           enabled: true
