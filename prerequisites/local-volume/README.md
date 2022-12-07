@@ -1,2 +1,2 @@
 # Local Storage
-Assisted service requires at leaset 2 volumes, this is example for creating local volumes using the local storage operator.
+The Assisted Service pod requires at least 2 PersistentVolumes, this is an example for creating local volumes using the Local Storage Operator (LSO).

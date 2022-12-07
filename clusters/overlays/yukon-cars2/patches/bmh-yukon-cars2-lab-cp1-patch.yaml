@@ -1,0 +1,17 @@
+---
+- op: replace
+  path: /spec/bootMACAddress
+  value: 'b4:96:91:c8:a2:7c'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: idrac-virtualmedia://192.168.38.74/redfish/v1/Systems/System.Embedded.1
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: yukon-cars2-lab-bmc-cp1
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: infraenv
+- op: replace
+  path: /metadata/name
+  value: yukon-cars2-lab-cp1
