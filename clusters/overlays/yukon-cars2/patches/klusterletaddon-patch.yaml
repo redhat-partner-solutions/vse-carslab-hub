@@ -1,0 +1,10 @@
+---
+- op: replace
+  path: /spec/clusterName
+  value: 'yukon-cars2-lab'
+- op: replace
+  path: /spec/clusterNamespace
+  value: 'yukon-cars2-lab'
+- op: replace
+  path: /metadata/name
+  value: 'yukon-cars2-lab'
