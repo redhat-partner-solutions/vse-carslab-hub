@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: build-bot
+  name: pipeline-credentials-sa
 secrets:
   - name: github-cred
   - name: quay-cred
