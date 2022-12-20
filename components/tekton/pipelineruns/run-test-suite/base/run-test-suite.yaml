@@ -1,0 +1,33 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  labels:
+    tekton.dev/pipeline: runsuite
+  name: run-tests
+spec:
+  timeouts:
+    pipeline: "10h0m0s"
+  params:
+    - name: TESTS_IMAGE
+      # yamllint disable-line rule:line-length
+      value: "image-registry.openshift-image-registry.svc:5000/openshift/cnf-gotests:latest"
+    - name: FEATURE
+      value: "sriov"
+    - name: NOTIF_URL
+      # yamllint disable-line rule:line-length
+      value: "https://chat.googleapis.com/v1/spaces/AAAAiCQuo38/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=QjLrTKvtNWmxFlkce7kVXJu6pzzlLtACBo8I4xem-AU%3D"
+    - name: MESSAGE
+      value: "Test suite featuring SRIOV in volante-cars-lab finished"
+  pipelineRef:
+    name: run-test-suite-from-image
+  serviceAccountName: pipeline-credentials-sa
+  workspaces:
+    - name: pipeline-ws
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi

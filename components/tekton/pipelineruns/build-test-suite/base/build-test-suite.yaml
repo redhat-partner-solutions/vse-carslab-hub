@@ -1,0 +1,23 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  labels:
+    tekton.dev/pipeline: runsuite
+  name: build-tests
+spec:
+  params:
+    - name: SRC_CONTAINERFILE
+      value: Dockerfile
+  pipelineRef:
+    name: build-image-from-git-repo
+  serviceAccountName: pipeline-credentials-sa
+  workspaces:
+    - name: pipeline-ws
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
