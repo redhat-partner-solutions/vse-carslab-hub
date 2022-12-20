@@ -1,0 +1,22 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: quay-cred
+  namespace: vse-cicd-catalog
+spec:
+  encryptedData:
+    # yamllint disable-line rule:line-length
+    password: AgAf5WPnduazcdrdR8kNOl/beH7+YnVvt8QuTwAQFFi3ivGh2BOH8pCX0i21EZpvpKMa7476kOLxIAal9VncTlhf4ozOU/uvWy5+ynxK3fFIqmGXUw8kG3BeR+9NgZJeyDpkHfdRspYIB4QtZ1oS/fRXE22eEHQcfjaj1Gzr9dwSH90fvoUf8fLM56ReZQsWwweNMU7euJLe2MYqwIy/xJN6kIj9n0bFztitQwMvbX6pbSs5haz9BgMiloHaK7MJxEhq/KWBARstWGT5NIZOO2RQKmJiakVoB+G93w6OwtwahguhtCkMV8GOd/N++jgviaKjTmVkTzq7/9ZPPyEkJ8s1sjlNk+mbHIdxCUFNBkT4NBgJhu2/icyOqkipGvN0cepYGFbR54isvENeReux6O6aOlq1Pd0PJnApdO+2MMKMq/XA03N9JCGy3U/hBZMVx6Qpd8iqcdS4VZg3jixuDa6kLyJYSPNwBApE4IfTd+9G9+9ln/aGydTjdtlIT4sg6XNQRKfHt7tz4dDfZHUVIs3MOLGu6rv5+twEfXV9PV6IIcFT3v1ytgb1r9SPA1+Kk2ajlMVCRd88VTd04GFs4lCZBg0CgVP/wGGiS7t71/mJD5LcQvDX5HZEohUzbUPIy7/wIvR+xnmHOMqEJovTsY9yecOpwtdd+nOX2aaBNIy1Q71+IybyljrrUWQxdCyXrcTuw/CVi91dh8JPL/eSl6u8DkLzQaGDu9zHtiLB7xBDhZeY3CQdvdwzoGG88Qfl2T32qBVEcHNqdbDDwNpLvLcW
+    # yamllint disable-line rule:line-length
+    username: AgBBw7ePuPKa61BmO7z1apseCj/UwZxVfWTIXwbaAHLtqpxACMiWI7qjpMTUXbcF/1+stx7B0s5pmRVrf09NqMcaoUi5rUaVFJHE7s4g8GtdTrF1IJQWTIM9IIEzAYjv1jw4csTY5MNGfCufCU3oKsQTaNZEwvS8vuEJMAErDPt3gg4jsuY7cwHrZEfWj+l66dkqq/q9YKsxZ7HxY3YSMEcdmko1GCUiFigEdXQDgi5b4JAC8gbxlb7Gp+H74YI8o6KxRa5irdf978qJs8csQAPTERfmiTuFqDka0TwBSVzf/oeIJfZcWoYTAqIAPt/C5+4zUUYfkPgpxFoovyjTdJcOZv/qLvlCvTs6mLjL7mULCNtaqv0rwpbChiVvaUkOukHSCgGTYawB2qeIlAq+d44qN42OeipePhjY0er/bPLtWRbRWy/NHndjitemdy2VIIrCOMcPIKCZtkYF5Q2OUYfERDN+6qhfV0vHJUNfMiQTNzIJ9RJjcr1fGuJv78JsTGpEhNhYndwnzgDUMn2UF08zy5Rh3EcGmlQjhYKnSI7zZjolHB7GsQRJ+bk9746U6/zGV38KkvTNE29KENOSNa6WsyVPj2GhsraE63GGQBC1QcyeF0YehckQKbMV+CCtgnITElhOpQhaHtQHnBZn+RqZEWh+s01w8g4jInitoaNIqNzkeLHzkE/mKoZ8Og77Y6zNU9hm5IM7Hu+opfuJXN1mpSf9RznWFfJXRQt9hw4+MbbO/+Vpa7mYiF0=
+  template:
+    data: null
+    metadata:
+      annotations:
+        tekton.dev/docker-0: quay.io
+      creationTimestamp: null
+      name: quay-cred
+      namespace: vse-cicd-catalog
+    type: kubernetes.io/basic-auth
