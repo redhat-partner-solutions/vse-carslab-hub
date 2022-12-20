@@ -6,7 +6,8 @@ namespace: vse-cicd-catalog
 
 resources:
   # yamllint disable-line rule:line-length
-  - github.com/redhat-partner-solutions/vse-carslab-hub/components/tekton/pipelineruns/run-test-suite/base?ref=main
+  # - github.com/redhat-partner-solutions/vse-carslab-hub/components/tekton/pipelineruns/run-test-suite/base?ref=main
+  - ../../../../../components/tekton/pipelineruns/run-test-suite/base
 
 patches:
   - target:
@@ -24,12 +25,13 @@ patches:
   - target:
       kind: PipelineRun
       name: run-tests
+      # yamllint disable rule:line-length
     patch: |-
       - op: add
         path: /spec/params/-
         value:
           name: "TESTS_IMAGE"
-          value: image-registry.openshift-image-registry.svc:5000/openshift/cnf-gotests
+          value: "image-registry.openshift-image-registry.svc:5000/openshift/cnf-gotests"
       - op: add
         path: /spec/params/-
         value:
