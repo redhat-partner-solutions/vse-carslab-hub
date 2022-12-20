@@ -3,14 +3,15 @@
 
 ## ServiceAccount for PipelineRuns 
 
-Create a ServiceAccount called `build-bot` with the desired
-permissions and/or roles assigned to it. The Service Account `build-bot` will include
+Create a ServiceAccount called `pipeline-credentials-sa` with the desired
+permissions and/or roles assigned to it. The Service Account
+`pipeline-credentials-sa` will include
 credentials configured as Secrets, and the credentials in the Secret object will
 be used to authenticate when needed private resources (e.g., a private repo or a private registry) demanded by the execution of a PipelineRun.
 
 ## Secrets and SealedSecret for PipelineRuns
 
-The Secrets associated to the created Service Account are introduced in the Hub Cluster using Sealed Secrets. Currently two SealedSecret objects are associated to the Service Account `build-bot`:
+The Secrets associated to the created Service Account are introduced in the Hub Cluster using Sealed Secrets. Currently two SealedSecret objects are associated to the Service Account `pipeline-credentials-sa`:
 
   * Secret github-cred: Generated from `github-sealed.yaml`: Includes github shared credentials of VSE team to access private repos in
       `github.com/redhat-partner-solutions`
@@ -20,7 +21,7 @@ The Secrets associated to the created Service Account are introduced in the Hub 
 
 1) Create a SealedSecret for Secret github-cred:
 
-```
+```console
 oc create secret generic github-cred --type=kubernetes.io/ssh-auth --dry-run=client \
 		--from-file=ssh-privatekey="YOUR_FILENAME_WITH_GITHUB_SSH_KEY" -o yaml | \
     /usr/local/bin/kubeseal \
@@ -47,7 +48,7 @@ oc create secret generic github-cred --type=kubernetes.io/ssh-auth --dry-run=cli
 
 ## Usage
 
-To load the Service Account `build-bot` with the associated Sealed Secrets and enable PipelineRuns access to github and quay repos:
+To provision the Service Account `pipeline-credentials-sa` with the associated Sealed Secrets and enable PipelineRuns access to github and quay repos:
 
 ```console
 oc apply -k environments/overlays/cicd

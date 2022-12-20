@@ -18,5 +18,5 @@ roleRef:
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: build-bot
+    name: pipeline-credentials-sa
     namespace: vse-cicd-catalog
