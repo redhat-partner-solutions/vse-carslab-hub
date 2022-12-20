@@ -10,6 +10,7 @@ spec:
   clusterDeploymentRef:
     name: volante-cars-lab
   imageSetRef:
+    # determine ocp version to install
     name: img4.10.18-x86-64-appsub
   networking:
     clusterNetwork:

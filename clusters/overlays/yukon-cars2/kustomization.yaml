@@ -1,0 +1,119 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: yukon-cars2-lab
+
+resources:
+  - github.com/redhat-partner-solutions/vse-ocp-bases/base/3-node?ref=main
+
+patchesStrategicMerge:
+  - ./patches/nmstate-config.yaml
+  - ./patches/aci.yaml
+
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+    patch: |-
+      - op: replace
+        path: /metadata/labels/name
+        value: 'yukon-cars2-lab'
+  - target:
+      kind: AgentClusterInstall
+    patch: |-
+      - op: replace
+        path: /spec/clusterDeploymentRef/name
+        value: 'yukon-cars2-lab'
+      - op: replace
+        path: /metadata/name
+        value: 'yukon-cars2-lab'
+  - target:
+      kind: SealedSecret
+      name: assisted-deployment-pull-secret
+    path: ./patches/pullsecret-sealed-patch.yaml
+  - target:
+      kind: Secret
+      name: bmc-cp1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'yukon-cars2-lab-bmc-cp1'
+      - op: replace
+        path: /data/password
+        value: 'UmVkSGF0VGVsY28hMjM0'
+  - target:
+      kind: Secret
+      name: bmc-cp2
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'yukon-cars2-lab-bmc-cp2'
+      - op: replace
+        path: /data/password
+        value: 'UmVkSGF0VGVsY28hMjM0'
+  - target:
+      kind: Secret
+      name: bmc-cp3
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'yukon-cars2-lab-bmc-cp3'
+      - op: replace
+        path: /data/password
+        value: 'UmVkSGF0VGVsY28hMjM0'
+  - target:
+      kind: ManagedCluster
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'yukon-cars2-lab'
+  - target:
+      kind: NMStateConfig
+      name: nmstate-super1
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'nmstate-cp1'
+  - target:
+      kind: NMStateConfig
+      name: nmstate-super2
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'nmstate-cp2'
+  - target:
+      kind: NMStateConfig
+      name: nmstate-super3
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: 'nmstate-cp3'
+  - target:
+      kind: BareMetalHost
+      name: cp1
+    path: ./patches/bmh-yukon-cars2-lab-cp1-patch.yaml
+  - target:
+      kind: BareMetalHost
+      name: cp2
+    path: ./patches/bmh-yukon-cars2-lab-cp2-patch.yaml
+  - target:
+      kind: BareMetalHost
+      name: cp3
+    path: ./patches/bmh-yukon-cars2-lab-cp3-patch.yaml
+  - target:
+      kind: ClusterDeployment
+    path: ./patches/clusterdeployment-patch.yaml
+  - target:
+      kind: InfraEnv
+    path: ./patches/infraenv-patch.yaml
+  - target:
+      kind: KlusterletAddonConfig
+    path: ./patches/klusterletaddon-patch.yaml
+  - target:
+      kind: Provisioning
+      name: provisioning-configuration
+    patch: |-
+      - op: replace
+        path: /spec/disableVirtualMediaTLS
+        value: true

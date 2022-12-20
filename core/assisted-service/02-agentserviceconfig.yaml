@@ -6,7 +6,7 @@ metadata:
   namespace: multicluster-engine
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 data:
   LOG_LEVEL: "debug"
   SUPPORT_L2: "false"

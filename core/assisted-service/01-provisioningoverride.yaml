@@ -9,3 +9,11 @@ metadata:
 spec:
   watchAllNamespaces: true
   provisioningNetwork: Disabled
+  ### Since Provisioning is a global config, we add it under the hub cluster
+  ### configuration.
+  ### Some baremetal systems need HTTP access instead of HTTPS.
+  ### For allowing it, we meed to set disableVirtualMediaTLS true.
+  ### By default, disableVirtualMediaTLS is set to false (using HTTPS).
+  ###
+  ### Remove comments and track the changes in Argo CD
+  # disableVirtualMediaTLS: true

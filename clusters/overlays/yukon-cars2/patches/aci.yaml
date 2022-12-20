@@ -1,0 +1,27 @@
+---
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: cluster
+  namespace: cluster-name
+spec:
+  apiVIP: 192.168.38.22
+  ingressVIP: 192.168.38.23
+  clusterDeploymentRef:
+    name: yukon-cars2-lab
+  imageSetRef:
+    name: img4.11.18-x86-64-appsub
+  networking:
+    clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+#      - cidr: fd01::/48
+#        hostPrefix: 64
+    serviceNetwork:
+      - 172.30.0.0/16
+#      - fd02::/112
+    machineNetwork:
+      - cidr: 192.168.38.0/26
+#      - cidr: fd00:6:6:2057::0/64
+  # yamllint disable-line rule:line-length
+  sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDd7Jj5iFCWv9IHJK9H+2O3lyPs36moAxeAUiHvzRS3uzqGxxB33BnTRBNDKsoDFSGJX0J4bd5b+XyCPdhFOfvn/xhmAcm6d8GALS+139e8d+No8h2QgZy0OVJFp844k4nmz4wew5/+X9DN40ZURYerekbVc58hw1+rTu0uM2jQ0cE2QmEf3qGKHx9UJW8t6IsMzwnrikBH30sYqn2NcBE+/c8JzlLc3PvvenlY0iQkpukI1A5E9GGMR9OS/q+w6FH85zvSgUatOV7Q5lg45QUF+V77DrfX5+niI+NK1g70pRvD8481SAdXrHPB5vK4vQEmJ4pz83IKYHVuPzRnjzYKv1jV33oReyyMqyk44Rsfkxl4i5SJ9z7q/EVmTjvurzD6ofi3Dg0+PL18eTcjuPFdCxSCUFsnr5N9CRHCxHRQpxoZTD7sYD4jDGNygawLvhxcvgKGBZzP53NRCzRFOMFmZsLPLQRaNOsgKRPAohmrn5l8+1xG5ltVauOwAFlKUxk='
