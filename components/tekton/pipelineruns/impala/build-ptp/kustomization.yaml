@@ -1,0 +1,64 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: vse-cicd-catalog
+
+resources:
+  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/build-test-suite?ref=main
+
+patches:
+  - target:
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: ClusterRoleBinding
+    patch: |-
+      - op: replace
+        path: /subjects/0/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: PipelineRun
+      name: build-tests
+    patch: |-
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "IMAGE_DEST"
+          value: "quay.io/redhat-partners-solutions/sno-tests"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "GIT_REPO"
+          value: "git@github.com:redhat-eets/sno-tests.git"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "GIT_REF"
+          value: "main"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "CLUSTER_NAME"
+          value: "impala-cars-lab"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "NAMESPACE"
+          value: "impala-cars-lab"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "WORKER1"
+          value: "du1-ldc1"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "MESSAGE"
+          value: "Test suite featuring Synchronization finished"
+      - op: replace
+        path: /metadata/name
+        value: build-ptp-tests

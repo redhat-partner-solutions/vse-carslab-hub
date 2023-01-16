@@ -1,0 +1,70 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: vse-cicd-catalog
+
+resources:
+  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/build-test-suite?ref=main
+
+patches:
+  - target:
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: ClusterRoleBinding
+    patch: |-
+      - op: replace
+        path: /subjects/0/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: PipelineRun
+      name: run-tests
+    patch: |-
+      - op: add
+        path: /spec/timeouts/pipeline
+        value: "0"
+      - op: add
+        path: /spec/timeouts/tasks
+        value: "0"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "CLUSTER_NAME"
+          value: "impala-cars-lab"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "NAMESPACE"
+          value: "impala-cars-lab"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "INTERFACES"
+          value: "enp81s0f0"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "TESTS_IMAGE"
+          value: "quay.io/redhat-partner-solutions/sno-tests:0.1"
+      - op: replace
+        path: /metadata/name
+        value: run-ptp-tests
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "WORKER1"
+          value: "node1"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "WORKER2"
+          value: "node2"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "FEATURE"
+          value: "ptp"
