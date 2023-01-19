@@ -1,0 +1,66 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: vse-cicd-catalog
+
+resources:
+  # yamllint disable-line rule:line-length
+  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/run-test-suite?ref=main
+
+patches:
+  - target:
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: ClusterRoleBinding
+    patch: |-
+      - op: replace
+        path: /subjects/0/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: PipelineRun
+      name: run-tests
+      # yamllint disable rule:line-length
+    patch: |-
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "TESTS_IMAGE"
+          value: "image-registry.openshift-image-registry.svc:5000/openshift/cnf-gotests"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "FEATURE"
+          value: "sriov"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "CLUSTER_NAME"
+          value: volante-cars-lab
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "NAMESPACE"
+          value: "volante-cars-lab"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "WORKER1"
+          value: "du3-ldc1"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "WORKER2"
+          value: "du4-ldc1"
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "INTERFACES"
+          value: "enp81s0f0,enp81s0f1"
+      - op: replace
+        path: /metadata/name
+        value: run-sriov-tests

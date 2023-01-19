@@ -1,0 +1,58 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: vse-cicd-catalog
+
+resources:
+  # yamllint disable-line rule:line-length
+  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/build-test-suite?ref=main
+
+patches:
+  - target:
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: ClusterRoleBinding
+    patch: |-
+      - op: replace
+        path: /subjects/0/namespace
+        value: vse-cicd-catalog
+  - target:
+      kind: PipelineRun
+      name: build-tests
+      # yamllint disable rule:line-length
+    patch: |-
+      - op: add
+        path: /spec/params/-
+        value:
+          name: IMAGE_DEST
+          # yamllint disable-line rule:line-length
+          value: image-registry.openshift-image-registry.svc:5000/openshift/cnf-gotests
+      - op: add
+        path: /spec/params/-
+        value:
+          name: GIT_REPO
+          # yamllint disable-line rule:line-length
+          value: git@github.com:redhat-partner-solutions/cnf-gotests.git
+      - op: add
+        path: /spec/params/-
+        value:
+          name: GIT_REF
+          value: vran_enablement
+      - op: add
+        path: /spec/params/-
+        value:
+          name: CLUSTER_NAME
+          value: volante-cars-lab
+      - op: add
+        path: /spec/params/-
+        value:
+          name: "NAMESPACE"
+          value: "volante-cars-lab"
+      - op: replace
+        path: /metadata/name
+        value: build-sriov-tests
