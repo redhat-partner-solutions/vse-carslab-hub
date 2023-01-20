@@ -11,6 +11,8 @@ spec:
         revision: main
         directories:
           - path: components/tekton/*
+          - path: components/tekton/pipelineruns
+            exclude: true
   template:
     metadata:
       name: 'cicd-{{path.basename}}'
