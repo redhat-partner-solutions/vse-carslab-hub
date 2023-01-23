@@ -4,4 +4,4 @@ kind: Kustomization
 
 
 resources:
-  - github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/stable?ref=main
+  - github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/latest?ref=main
