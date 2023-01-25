@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: vse-cicd-catalog
 
 resources:
-  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/build-test-suite?ref=main
+  - github.com/redhat-partner-solutions/vse-catalog/components/tekton/pipelineruns/run-test-suite?ref=main
 
 patches:
   - target:
