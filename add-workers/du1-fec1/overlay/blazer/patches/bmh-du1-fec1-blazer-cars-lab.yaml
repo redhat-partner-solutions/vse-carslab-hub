@@ -4,7 +4,7 @@
   value: bmc-du1-fec1-blazer-cars-lab
 - op: replace
   path: /metadata/labels/infraenvs.agent-install.openshift.io
-  value: infraenv
+  value: blazer-cars-lab-infraenv
 - op: replace
   path: /metadata/name
   value: du1-fec1-blazer-cars-lab
