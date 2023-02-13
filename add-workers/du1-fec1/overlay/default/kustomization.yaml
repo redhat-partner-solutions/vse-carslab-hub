@@ -13,10 +13,3 @@ patches:
       kind: BareMetalHost
       name: bmh-day2-worker1
     path: ./patches/bmh-du1-fec1.yaml
-  - target:
-      kind: Provisioning
-      name: provisioning-configuration
-    patch: |-
-      - op: replace
-        path: '/spec/disableVirtualMediaTLS'
-        value: true

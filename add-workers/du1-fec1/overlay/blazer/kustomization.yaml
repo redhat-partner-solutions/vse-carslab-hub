@@ -38,4 +38,4 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/labels/cluster-name
-        value: 'blazer-cars-lab'
+        value: 'blazer-nmstate'
