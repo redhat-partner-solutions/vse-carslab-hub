@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: clusters-sub
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: clusters
+  namespace: openshift-gitops
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/hhamid93/vse-carslab-hub.git
+        revision: ztp
+        directories:
+          - path: clusters/ztp-overlays/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: ztp-app-project
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 15
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m
+        syncOptions:
+          - CreateNamespace=true
+      source:
+        path: '{{path}}'
+        repoURL: https://github.com/hhamid93/vse-carslab-hub.git
+        targetRevision: ztp
+      destination:
+            server: https://kubernetes.default.svc
+            namespace: clusters-sub
