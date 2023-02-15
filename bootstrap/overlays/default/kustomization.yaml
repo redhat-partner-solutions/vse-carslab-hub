@@ -2,9 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+
 resources:
   - github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/latest?ref=main
-  - ../../../components/applicationsets
-# - ../../../components/argocdproj
-  - openshift-gitops-argocd.yaml
+  - github.com/redhat-partner-solutions/vse-catalog/components/argocd/overlays/4.12?ref=main
   - openshift-gitops-rbac-policy.yaml
+  - ../../../components/applicationsets
+  - ../../../components/argocdproj
