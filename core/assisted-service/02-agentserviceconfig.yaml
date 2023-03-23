@@ -24,14 +24,14 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   databaseStorage:
-    storageClassName: lso-filesystemclass
+    # storageClassName: lso-filesystemclass
     accessModes:
       - ReadWriteOnce
     resources:
       requests:
         storage: 20Gi
   filesystemStorage:
-    storageClassName: lso-filesystemclass
+    # storageClassName: lso-filesystemclass
     accessModes:
       - ReadWriteOnce
     resources:
