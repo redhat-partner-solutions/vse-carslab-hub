@@ -7,7 +7,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/natifridman/vse-carslab-hub
+        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
         revision: cars2
         directories:
           - path: core/*
@@ -27,7 +27,7 @@ spec:
             factor: 2
             maxDuration: 5m
       source:
-        repoURL: https://github.com/natifridman/vse-carslab-hub
+        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
         targetRevision: cars2
         path: '{{path}}'
       destination:
