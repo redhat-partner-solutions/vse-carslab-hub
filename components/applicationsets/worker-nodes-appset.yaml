@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
-        revision: main
+        revision: cars2
         directories:
           - path: add-workers/*
   template:
@@ -28,7 +28,7 @@ spec:
             maxDuration: 5m
       source:
         repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
-        targetRevision: main
+        targetRevision: cars2
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
