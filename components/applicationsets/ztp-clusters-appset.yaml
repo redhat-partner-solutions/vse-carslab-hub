@@ -18,7 +18,7 @@ spec:
           - path: clusters/ztp-siteconfig/*
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{path.basename}}-siteconfig'
     spec:
       project: ztp-app-project
       syncPolicy:
