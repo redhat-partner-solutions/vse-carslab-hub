@@ -27,8 +27,10 @@ jobs:
         run: |
           cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin
           make build
-          mkdir -p /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig
-          cp -R -L ./kustomize/plugin/ran.openshift.io/v1/siteconfig /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig
+          mkdir -p /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest
+          mkdir -p /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/SiteConfig
+          cp -R -L ./kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest
+          cp -R -L ./kustomize/plugin/ran.openshift.io/v1/siteconfig/SiteConfig /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/SiteConfig
       - name: Code Checkout
         uses: actions/checkout@v3
         with:
