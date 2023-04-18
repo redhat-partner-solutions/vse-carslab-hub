@@ -25,7 +25,8 @@ jobs:
           repository: openshift-kni/cnf-features-deploy
           path: cnf-features-deploy
       - name: Validate Manifests
-        run: /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin/make build
+        run: cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin
+             make build
       - name: Code Checkout
         uses: actions/checkout@v3
         with:
