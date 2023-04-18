@@ -46,7 +46,7 @@ do
   echo "Validating $i"
   echo
 
-  KUSTOMIZE_BUILD_OUTPUT=$(${KUSTOMIZE} build $i)
+  KUSTOMIZE_BUILD_OUTPUT=$(${KUSTOMIZE} build --enable-alpha-plugins $i)
 
   build_response=$?
 
