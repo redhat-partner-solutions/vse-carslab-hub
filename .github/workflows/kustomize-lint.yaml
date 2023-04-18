@@ -18,13 +18,12 @@ jobs:
         run: |
           sudo curl -L -o /usr/bin/kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64
           sudo chmod +x /usr/bin/kustomize
-        # yamllint enable rule:line-length
-      - name: Checkout tools repo
+      - name: Checkout cnf-features-deploy repo
         uses: actions/checkout@v3
         with:
           repository: openshift-kni/cnf-features-deploy
           path: cnf-features-deploy
-      - name: Validate Manifests
+      - name: Install siteconfig plugin
         run: |
           cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin
           make build
@@ -33,4 +32,5 @@ jobs:
         with:
           path: main
       - name: Validate Manifests
-        run: ./hack/validate_manifests.sh
+        run: ./home/runner/work/vse-carslab-hub/vse-carslab-hub/main/validate_manifests.sh
+        # yamllint enable rule:line-length
