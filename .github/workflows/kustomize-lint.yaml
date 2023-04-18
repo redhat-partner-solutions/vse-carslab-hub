@@ -19,7 +19,16 @@ jobs:
           sudo curl -L -o /usr/bin/kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64
           sudo chmod +x /usr/bin/kustomize
         # yamllint enable rule:line-length
+      - name: Checkout tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: openshift-kni/cnf-features-deploy
+          path: cnf-features-deploy
+      - name: Validate Manifests
+        run: make build
       - name: Code Checkout
         uses: actions/checkout@v3
+        with:
+          path: main
       - name: Validate Manifests
         run: ./hack/validate_manifests.sh
