@@ -26,7 +26,7 @@ jobs:
       - name: Install siteconfig plugin
         run: |
           cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin
-          make build KUSTOMIZE_DIR=/usr/bin SITECONFIG_KUSTOMIZE_DIR=/usr/bin/kustomizeplugin/ran.openshift.io/v1/siteconfig
+          make build KUSTOMIZE_DIR=/usr/bin SITECONFIG_KUSTOMIZE_DIR=/usr/bin/kustomize/plugin/ran.openshift.io/v1/siteconfig
         # mkdir -p /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest
         # mkdir -p /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/SiteConfig
         # cp -R -L ./kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest /home/runner/kustomize/plugin/ran.openshift.io/v1/siteconfig/extra-manifest
