@@ -32,6 +32,5 @@ jobs:
         with:
           path: main
       - name: Validate Manifests
-        run: |
-          cd ./home/runner/work/vse-carslab-hub/vse-carslab-hub/main/hack/validate_manifests.sh
+        run: ./home/runner/work/vse-carslab-hub/vse-carslab-hub/main/hack/validate_manifests.sh
         # yamllint enable rule:line-length
