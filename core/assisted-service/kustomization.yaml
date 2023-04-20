@@ -7,3 +7,6 @@ resources:
   - 01-provisioningoverride.yaml
   - 02-agentserviceconfig.yaml
   - 03-clusterimageset.yaml
+  # Remove comment if you are using LSO.
+  # This manifest sets default storageclass
+  # - 01-storageclass.yaml
