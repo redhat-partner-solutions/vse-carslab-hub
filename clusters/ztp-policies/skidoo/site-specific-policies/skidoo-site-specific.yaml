@@ -1,0 +1,55 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "skidoo-site-specific"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    sites: "skidoo"
+  remediationAction: inform
+  mcp: "master"
+  sourceFiles:
+    - fileName: PerformanceProfile.yaml
+      policyName: "perfprofile-policy"
+      metadata:
+        name: openshift-node-performance-profile
+      spec:
+        additionalKernelArgs:
+          - rcupdate.rcu_normal_after_boot=0
+          - nohz=off
+          - nohz_full=4-47,52-95
+        cpu:
+          isolated: "4-47,52-95"
+          reserved: "0-3,48-51"
+        hugepages:
+          defaultHugepagesSize: "1G"
+          pages:
+            - size: "1G"
+              count: 64
+              node: 0
+            - size: "1G"
+              count: 64
+              node: 1
+        numa:
+          topologyPolicy: single-numa-node
+        realTimeKernel:
+          enabled: true
+    - fileName: TunedPerformancePatch.yaml
+      policyName: "tuned-perf-patch-policy"
+      spec:
+        profile:
+          - name: performance-patch
+            data: |
+              [main]
+              # yamllint disable-line rule:line-length
+              summary=Configuration changes profile inherited from performance
+              include=openshift-node-performance-openshift-node-performance-profile
+              [bootloader]
+              cmdline_crash=nohz_full=4-47,52-95
+              [sysctl]
+              kernel.timer_migration=1
+              [scheduler]
+              group.ice-ptp=0:f:10:*:ice-ptp.*
+              [service]
+              service.stalld=start,enable
