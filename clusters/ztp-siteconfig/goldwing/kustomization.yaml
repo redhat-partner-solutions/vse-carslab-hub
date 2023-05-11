@@ -1,0 +1,47 @@
+---
+# yamllint disable
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generators:
+ - goldwing-siteconfig.yaml
+
+resources:
+ - github.com/redhat-partner-solutions/vse-ocp-bases/base/ztp/site-config?ref=main
+
+patches:
+ - target:
+    kind: Secret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'goldwing-bmc-creds-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'goldwing'
+     - op: replace
+       path: /data/username
+       value: 'QURNSU4K'
+     - op: replace
+       path: /data/password
+       value: 'YWx0aW9zdGFyITIz'
+ - target:
+    kind: SealedSecret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'assisted-deployment-pull-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'goldwing'
+     - op: replace
+       path: /spec/encryptedData/.dockerconfigjson
+       value: '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'
+     - op: replace
+       path: /spec/encryptedData/type
+     - op: replace
+       path: /spec/template/metadata/name
+       value: 'goldwing-bmc-creds-secret'
+     - op: replace
+       path: /spec/template/metadata/namespace
+       value: 'goldwing'
