@@ -1,0 +1,55 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "goldwing-site-specific"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    sites: "goldwing"
+  remediationAction: inform
+  mcp: "master"
+  sourceFiles:
+    - fileName: PerformanceProfile.yaml
+      policyName: "perfprofile-policy"
+      metadata:
+        name: openshift-node-performance-profile
+      spec:
+        additionalKernelArgs:
+          - rcupdate.rcu_normal_after_boot=0
+          - nohz=off
+          - nohz_full=2-31, 34-63
+        cpu:
+          isolated: "2-31, 34-63"
+          reserved: "0-1,32-33"
+        hugepages:
+          defaultHugepagesSize: "1G"
+          pages:
+            - size: "1G"
+              count: 64
+              node: 0
+            - size: "1G"
+              count: 64
+              node: 1
+        numa:
+          topologyPolicy: single-numa-node
+        realTimeKernel:
+          enabled: true
+    - fileName: TunedPerformancePatch.yaml
+      policyName: "tuned-perf-patch-policy"
+      spec:
+        profile:
+          - name: performance-patch
+            data: |
+              [main]
+              # yamllint disable-line rule:line-length
+              summary=Configuration changes profile inherited from performance
+              include=openshift-node-performance-openshift-node-performance-profile
+              [bootloader]
+              cmdline_crash=nohz_full=2-31, 34-63
+              [sysctl]
+              kernel.timer_migration=1
+              [scheduler]
+              group.ice-ptp=0:f:10:*:ice-ptp.*
+              [service]
+              service.stalld=start,enable
