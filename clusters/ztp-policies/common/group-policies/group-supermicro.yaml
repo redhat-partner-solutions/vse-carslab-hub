@@ -31,7 +31,7 @@ spec:
           - rcupdate.rcu_normal_after_boot=0
         cpu:
           # These must be tailored for the specific hardware platform
-          isolated: "0-1, 32-33"
+          isolated: "2-31, 34-63"
         hugepages:
           defaultHugepagesSize: 1G
           pages:
