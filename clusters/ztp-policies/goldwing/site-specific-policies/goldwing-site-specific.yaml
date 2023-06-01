@@ -28,9 +28,6 @@ spec:
             - size: "1G"
               count: 64
               node: 0
-            - size: "1G"
-              count: 64
-              node: 1
         numa:
           topologyPolicy: single-numa-node
         realTimeKernel:
