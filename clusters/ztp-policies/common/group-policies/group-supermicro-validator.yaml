@@ -2,14 +2,14 @@
 apiVersion: ran.openshift.io/v1
 kind: PolicyGenTemplate
 metadata:
-# yamllint disable-line rule:line-length
+  # yamllint disable-line rule:line-length
   # The name will be used to generate the placementBinding name as {name}-placementBinding, the placementRule name as {name}-placementRule,
   # and the policy name as {name}-{spec.sourceFiles[x].policyName}
   name: "group-supermicro-validator"
   namespace: "ztp-group"
 spec:
   bindingRules:
-# yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
     # This policy will correspond to all clusters with label specified in bindingRules and
     # without label specified in bindingExcludedRules.
     group-supermicro: ""
@@ -20,7 +20,7 @@ spec:
     ztp-done: ""
   mcp: "master"
   sourceFiles:
-# yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
     # Create inform policy to validate configuration CRs that will be applied to all SNO clusters
     - fileName: validatorCRs/informDuValidator.yaml
       remediationAction: inform

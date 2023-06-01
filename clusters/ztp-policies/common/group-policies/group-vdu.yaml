@@ -27,7 +27,7 @@ spec:
       spec:
         additionalKernelArgs:
           - crashkernel=512M
-          #- cpufreq.default_governor=schedutil 30-Jan testing dcain
+          # - cpufreq.default_governor=schedutil 30-Jan testing dcain
           - rcupdate.rcu_normal_after_boot=0
         cpu:
           # These must be tailored for the specific hardware platform
@@ -39,9 +39,9 @@ spec:
               count: 16
         workloadHints:
           realTime: true
-          #highPowerConsumption: true 30-Jan testing dcain
+          # highPowerConsumption: true 30-Jan testing dcain
           perPodPowerManagement: false
-        #net:
+        # net:
         #  userLevelNetworking: true #testing 30-Jan dcain
     - fileName: TunedPerformancePatch.yaml
       policyName: "config-policy"
