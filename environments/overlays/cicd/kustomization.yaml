@@ -6,3 +6,5 @@ resources:
   - github-sealed.yaml
   - quay-sealed.yaml
   - pipeline-credentials.yaml
+  - argocd-cm.yaml
+  - argocd-cred-sealed.yaml
