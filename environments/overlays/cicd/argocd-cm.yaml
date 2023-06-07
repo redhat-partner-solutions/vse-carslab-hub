@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+data:
+  ARGOCD_SERVER: openshift-gitops-server-openshift-gitops.apps.db5.cars.lab
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: argocd-env-configmap
+  namespace: vse-cicd-catalog
