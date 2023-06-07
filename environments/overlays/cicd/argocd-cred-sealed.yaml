@@ -1,0 +1,19 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: argocd-env-secret
+  namespace: vse-cicd-catalog
+spec:
+  encryptedData:
+    # yamllint disable rule:line-length
+    ARGOCD_PASSWORD: AgAS+TWYkKOeXKcSbG/JgGPaBRa2AitXJjqVfeODOCNfqVK2eu/DKUoT7TGPXGpFK4ElSksBIJw03Vtw3RDxZJOTmp+Fw5Ch2rWpu4ex4B+2PVLi+whlpp2sr38dbPyOIx6VmHAh0TWgBSjHGfrbtgpvmGnFUXSmrsvB1WbQF4oip07nR/2H6EIgSruRXqUYkLQA+zXJdMF8Dh5++QzhQDPHaKbDhp1mHu7FlV3pZ5LQ5MUbhLIc+mOb4QxCsv604CshQPbzYPAeB2j3SJtLN3AtqVUxyKx9SifkuAhrDu01kYu7DBCCRIc+BNrpdJQli640bOgpc1UXwp8o7jd85aGvj+2IzSNdOsD2Bx2bkQ48oo4zwTUPG1EkM0i0sCoNJTG+mBsFTW65SJE9hygRWu4BvKikWOi4TbK5n86L+yVO+g7KtSi21mRlu9yfhMjGhaBlwP/M1zNV4lyns9+iVlqLMbAQFj3KC701H9RbSTZ4OqOG6sDSIcGXk8QL5oDEHqEUzR92G99vq0+GD2aDjzGrfwMj8ShGcbf6WvfyblLfULqo0lfWEvVKpeIziP5vsgkoxBt+gdufDLp201H2cgfGoUoInE5Lmdlpb8NQ+tSK0EeMg92pV+3oOn7RL4ddcEhxQoa5mxA9Xit2KwxEOMO7XfXqhQoyNRHF96S18f4HmsARLyeiUkf/ssGk0an0kjvKmf2+C8eZ4ABoatE3Sw9k229pcd04XcYZVptKCShOxw==
+    ARGOCD_USERNAME: AgAvqYfVsvu+Il4m2pp9R6T9oIKsdGbcHiM6rMzmwzz2HUnxnoWShD6Ks57Zzs5WstqlxLDJySXA5R1+xqznMElAGkqUwlQSEjnA0vDIHGYjBRN3TwstLbA+EphtSHCN8Bt+grO0YyiK+eQLBcm28zZkUw5LckU+WIxTD6Lu5vUCcMcBGeARkuHWsJN0H7ZF2hfnt7j+i+rOe+8k0P1RAKEszQIXDD5nDuXoVm3v62UvauOni2lUKvXR/PGmuFHNxfSEi7TQMEPL56dojYE42BAD1XGvd+t9JDRPiZNp9qYSeGugYDY1/mzTgy8OvfPvH4/jPRFTuQu+p3lwIe0SRhPqDLvfLI8TamK7tTRR3Op/QBc1CsWj/9V7eMtPjXZEdtS6MSmGKUPradDR0dmd6UJOuQFtC/S5VDDBbHd+n/KzPtmaLVdIxmHGJtvAQuDt6WgqEbWcMYxz6NUStxyVru4hw1zfICiJ+0cAV3vI9WAnGSt+sUwBAe5rqWBRRjTum3nCoi2PPHtFvnGmsA1CsazAPQTVOHa1F1Qz3VEbSxh/iDGd96seuW9QcLEqkVItMuDCqmFx1pmlgC0ksnuMJwT0VblYzqhlTDvi7y0xLjeq3U1t8JUmYSy5dJ5W+Am7eiK3U3nz0gCNbSsNHc28a1OeKib4PisumUQei30pFgBU13BoUSwofiAm73b+lsxGBSaRZo8HHQ==
+    # yamllint enable rule:line-length
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: argocd-env-secret
+      namespace: vse-cicd-catalog

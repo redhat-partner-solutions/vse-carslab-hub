@@ -46,6 +46,16 @@ oc create secret generic github-cred --type=kubernetes.io/ssh-auth --dry-run=cli
       * for Secret github-cred add annotation: `tekton.dev/git-0: github.com` 
       * for Secret quay-cred add annotation: `tekton.dev/docker-0: quay.io`
 
+4) Create Argo CD ConfigMap and SealedSecret for using Argo sync tekton task:
+
+```console
+ARGO_URL=$(oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}')
+oc create cm argocd-env-configmap -n vse-cicd-catalog --dry-run=client --from-literal=ARGOCD_SERVER=$ARGO_URL -o yaml > argocd-cm.yaml
+
+ARGO_ADMIN_PASSWORD=$(oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d)
+oc create secret generic argocd-env-secret -n vse-cicd-catalog --dry-run=client --from-literal=ARGOCD_USERNAME="admin" --from-literal=ARGOCD_PASSWORD=$ARGO_ADMIN_PASSWORD -o yaml | kubeseal --controller-name=sealed-secrets-controller --controller-namespace=sealed-secrets --format yaml > argocd-cred-sealed.yaml
+```
+
 ## Usage
 
 To provision the Service Account `pipeline-credentials-sa` with the associated Sealed Secrets and enable PipelineRuns access to github and quay repos:
