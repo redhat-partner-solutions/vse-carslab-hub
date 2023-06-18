@@ -17,8 +17,6 @@ spec:
       spec:
         additionalKernelArgs:
           - rcupdate.rcu_normal_after_boot=0
-          - nohz=off
-          - nohz_full=2-31, 34-63
         cpu:
           isolated: "2-31, 34-63"
           reserved: "0-1,32-33"

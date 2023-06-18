@@ -32,6 +32,7 @@ spec:
         cpu:
           # These must be tailored for the specific hardware platform
           isolated: "2-31, 34-63"
+          reserved: "0-1,32-33"
         hugepages:
           defaultHugepagesSize: 1G
           pages:
