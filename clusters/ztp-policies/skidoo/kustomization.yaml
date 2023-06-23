@@ -2,30 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
- - ns.yaml
-
 generators:
-# This is common to all RAN deployments
- - common-policies/common-ranGen.yaml
-# yamllint disable-line rule:line-length
-# This group policy is for all Dell EMC XR12 based deployments:
- - group-policies/group-vdu.yaml
-# yamllint disable-line rule:line-length
-# This group validator policy is for all Dell EMC XR12 based deployments:
- - group-policies/group-vdu-validator.yaml
-# This group policy is for all compressed 3-node cluster deployments:
-#- group-du-3node-ranGen.yaml
-# yamllint disable-line rule:line-length
-# This group validator policy is for all compressed 3-node cluster deployments:
-#- group-du-3node-validator-ranGen.yaml
-# This group policy is for all standard cluster deployments:
-#- group-du-standard-ranGen.yaml
-# This group validator policy is for all standard cluster deployments:
-#- group-du-standard-validator-ranGen.yaml
-# yamllint disable-line rule:line-length
-# These are examples that should be replicated for every individual site:
  - site-specific-policies/skidoo-site-specific.yaml
-#- example-multinode-site.yaml
-# These are cluster specific policies:
  - cluster-specific-policies/skidoo-cluster-specific.yaml
