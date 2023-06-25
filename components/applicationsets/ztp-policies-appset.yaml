@@ -21,7 +21,7 @@ spec:
     metadata:
       name: '{{path.basename}}-policies'
     spec:
-      project: ztp-app-project
+      project: policy-app-project
       syncPolicy:
         automated:
           prune: true
