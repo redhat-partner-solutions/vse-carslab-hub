@@ -26,8 +26,6 @@ generators:
  - group-policies/group-vdu-validator.yaml
 
  # yamllint disable-line rule:line-length
- # These are policies that are unique for a site or OpenShift cluster:
- - site-specific-policies/puffin-wpc-test.yaml
 
  # This group policy is for all compressed 3-node cluster deployments:
  # - group-du-3node-ranGen.yaml
