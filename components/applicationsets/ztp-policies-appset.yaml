@@ -14,7 +14,7 @@ spec:
     - git:
 # yamllint disable-line rule:line-length
         repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub.git
-        revision: main
+        revision: cars2
         directories:
           - path: clusters/ztp-policies/*
   template:
@@ -38,7 +38,7 @@ spec:
         path: '{{path}}'
 # yamllint disable-line rule:line-length
         repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub.git
-        targetRevision: main
+        targetRevision: cars2
       destination:
         server: https://kubernetes.default.svc
         namespace: policies-sub
