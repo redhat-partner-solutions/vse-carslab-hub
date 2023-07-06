@@ -6,5 +6,5 @@ resources:
   - core-components-appset.yaml
   # - clusters-appset.yaml
   # - worker-nodes-appset.yaml
-  - ztp-clusters-appset.yaml
-  - ztp-policies-appset.yaml
+  #- ztp-clusters-appset.yaml
+  #- ztp-policies-appset.yaml
