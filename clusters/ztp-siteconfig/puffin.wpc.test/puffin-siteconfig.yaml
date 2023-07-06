@@ -1,5 +1,6 @@
 ---
 # yamllint disable rule:line-length
+# yamllint disable rule:comments-indentation
 apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
