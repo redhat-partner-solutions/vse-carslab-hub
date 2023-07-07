@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+data:
+  config.yaml: |
+    enableUserWorkload: true
+  ### This option allows monitoring on user specified projects, such as those
+  ### that are of the containerized or virtualized Network Function variety.
+  ### By default, enableUserWorkload is set to false (no metrics collection).
