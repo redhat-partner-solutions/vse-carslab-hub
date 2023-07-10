@@ -4,8 +4,8 @@
 apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
-  name: "puffin-wpc-test"
-  namespace: "puffin-wpc-test"
+  name: "puffin"
+  namespace: "puffin"
 spec:
   baseDomain: "wpc.test"
   pullSecretRef:
