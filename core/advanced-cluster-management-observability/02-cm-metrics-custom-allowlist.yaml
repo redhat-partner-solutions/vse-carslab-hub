@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: observability-metrics-custom-allowlist
+  namespace: open-cluster-management-observability
+data:
+  metrics_list.yaml: |
+    names:
+      - node_hwmon_temp_celsius
+      - node_hwmon_power_average_watt
+    collect_rules:
+      - group: -SNOResourceUsage
+  ### This ConfigMap overrides default behavior of collecting
+  ### custom metrics on SNO. This is useful to collect more metrics
+  ### through node-exporter (Prometheus). By default, many metrics will
+  ### not be collected on SNO.
