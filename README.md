@@ -16,7 +16,7 @@ Storage can be provided however you deem fit.  Cloud environments typically have
 ## How to run it
 ```shell
 export KUBECONFIG=my-hub-cluster-kubeconfig
-until oc apply -k https://github.com/redhat-partner-solutions/vse-carslab-hub/bootstrap/overlays/default; do sleep 3; done
+until oc apply -k https://github.com/redhat-partner-solutions/vse-carslab-hub/bootstrap/overlays/default?ref=cars2; do sleep 3; done
 ```
 
 # Structure
