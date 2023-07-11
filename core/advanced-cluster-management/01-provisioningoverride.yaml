@@ -16,4 +16,4 @@ spec:
   ### By default, disableVirtualMediaTLS is set to false (using HTTPS).
   ###
   ### Remove comments and track the changes in Argo CD
-  # disableVirtualMediaTLS: true
+  disableVirtualMediaTLS: true
