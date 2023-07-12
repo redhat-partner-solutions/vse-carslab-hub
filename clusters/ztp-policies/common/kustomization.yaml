@@ -4,6 +4,9 @@ kind: Kustomization
 
 resources:
  - ns.yaml
+ # This policy is used for VSE Loki logging
+ - common-policies/common-vseloki.yaml
+
 
 generators:
  # This is common to all RAN deployments
