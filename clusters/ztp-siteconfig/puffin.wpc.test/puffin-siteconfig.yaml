@@ -28,6 +28,7 @@ spec:
       # extraManifestPath: sno-extra-manifest
       clusterLabels:
         common-du-vsesync: true
+        vseloki: true
         group-dellr740-vse1: ""
         sites: "puffin-wpc-test"
       clusterNetwork:
