@@ -29,6 +29,7 @@ spec:
       clusterLabels:
         common-du-vsesync: true
         vseloki: true
+        vsepregasync: true
         group-dellr740-vse1: ""
         sites: "puffin-wpc-test"
       clusterNetwork:

@@ -1,0 +1,146 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-vse-ptp
+  namespace: ztp-common-cars2
+  annotations:
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    ran.openshift.io/ztp-deploy-wave: "2"
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-ztp-catalog-add
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha
+                kind: CatalogSource
+                metadata:
+                  name: prega-operators
+                  namespace: openshift-marketplace
+                spec:
+                  displayName: preGA PTP Operator
+                  grpcPodConfig:
+                    nodeSelector:
+                      kubernetes.io/os: linux
+                      node-role.kubernetes.io/master: ""
+                    priorityClassName: system-cluster-critical
+                    tolerations:
+                      - effect: NoSchedule
+                        key: node-role.kubernetes.io/master
+                        operator: Exists
+                      - effect: NoExecute
+                        key: node.kubernetes.io/unreachable
+                        operator: Exists
+                        tolerationSeconds: 120
+                      - effect: NoExecute
+                        key: node.kubernetes.io/not-ready
+                        operator: Exists
+                        tolerationSeconds: 120
+                    icon:
+                      base64data: ""
+                      mediatype: ""
+                    image: quay.io/jnunez/sync-operator-catalog:v4.14dev
+                    priority: -100
+                    publisher: Red Hat
+                    sourceType: grpc
+                    updateStrategy:
+                      registryPoll:
+                        interval: 10m0s
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-ptp-ns
+        spec:
+          remediationAction: enforce
+          severity: low
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                  name: openshift-ptp
+                labels:
+                  openshift.io/cluster-monitoring: "true"
+                  name: openshift-ptp
+                spec: {}
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-ptp-operatorgroup
+        spec:
+          remediationAction: enforce
+          severity: low
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1
+                kind: OperatorGroup
+                metadata:
+                  name: ptp-operators
+                  namespace: openshift-ptp
+                spec:
+                  targetNamespaces:
+                    - openshift-ptp
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-ptp-subscription
+        spec:
+          remediationAction: enforce
+          severity: low
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: Subscription
+                metadata:
+                  name: ptp-operator-subscription
+                  namespace: openshift-ptp
+                spec:
+                  channel: alpha
+                  installPlanApproval: Automatic
+                  name: ptp-operator
+                  source: prega-operators
+                  sourceNamespace: openshift-marketplace
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-ztp-catalog-add
+  namespace: ztp-common-cars2
+placementRef:
+  name: placement-policy-ztp-catalog-add
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+  - name: policy-ztp-catalog-add
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-ztp-catalog-add
+  namespace: ztp-common-cars2
+spec:
+  clusterConditions:
+    - status: "True"
+      type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      # yamllint disable-line rule:line-length
+      - {key: vsepregasync, operator: In, values: ["true"]}
