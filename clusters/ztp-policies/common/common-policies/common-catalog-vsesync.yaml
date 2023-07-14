@@ -143,4 +143,4 @@ spec:
   clusterSelector:
     matchExpressions:
       # yamllint disable-line rule:line-length
-      - {key: kubernetes.io/hostname, operator: In, values: ["r740-u3.puffin.wpc.test", "du1-2.falcon.cars2.lab"]}
+      - {key: vsepregasync, operator: In, values: ["true"]}
