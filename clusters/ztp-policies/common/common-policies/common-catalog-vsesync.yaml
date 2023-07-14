@@ -93,7 +93,7 @@ spec:
                   namespace: openshift-ptp
                 spec:
                   targetNamespaces:
-                  - openshift-ptp
+                    - openshift-ptp
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
