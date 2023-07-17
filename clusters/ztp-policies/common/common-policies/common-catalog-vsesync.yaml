@@ -3,7 +3,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-vse-ptp
-  namespace: ztp-common-cars2
+  namespace: ztp-common
   annotations:
     policy.open-cluster-management.io/standards: NIST SP 800-53
     policy.open-cluster-management.io/categories: CM Configuration Management
@@ -29,33 +29,13 @@ spec:
                   namespace: openshift-marketplace
                 spec:
                   displayName: preGA PTP Operator
-                  grpcPodConfig:
-                    nodeSelector:
-                      kubernetes.io/os: linux
-                      node-role.kubernetes.io/master: ""
-                    priorityClassName: system-cluster-critical
-                    tolerations:
-                      - effect: NoSchedule
-                        key: node-role.kubernetes.io/master
-                        operator: Exists
-                      - effect: NoExecute
-                        key: node.kubernetes.io/unreachable
-                        operator: Exists
-                        tolerationSeconds: 120
-                      - effect: NoExecute
-                        key: node.kubernetes.io/not-ready
-                        operator: Exists
-                        tolerationSeconds: 120
-                    icon:
-                      base64data: ""
-                      mediatype: ""
-                    image: quay.io/jnunez/sync-operator-catalog:v4.14dev
-                    priority: -100
-                    publisher: Red Hat
-                    sourceType: grpc
-                    updateStrategy:
-                      registryPoll:
-                        interval: 10m0s
+                  image: quay.io/jnunez/sync-operator-catalog:v4.14dev
+                  priority: -100
+                  publisher: Red Hat
+                  sourceType: grpc
+                  updateStrategy:
+                    registryPoll:
+                      interval: 10m0s
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -121,7 +101,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-ztp-catalog-add
-  namespace: ztp-common-cars2
+  namespace: ztp-common
 placementRef:
   name: placement-policy-ztp-catalog-add
   kind: PlacementRule
@@ -135,7 +115,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-ztp-catalog-add
-  namespace: ztp-common-cars2
+  namespace: ztp-common
 spec:
   clusterConditions:
     - status: "True"
