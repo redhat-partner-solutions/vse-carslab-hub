@@ -29,7 +29,6 @@ spec:
       clusterLabels:
         common-du-vsesync: true
         vseloki: true
-        vsepregasync: true
         group-smcx12-vse2: ""
         sites: "falcon-cars2-lab"
       clusterNetwork:
