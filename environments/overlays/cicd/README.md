@@ -30,23 +30,28 @@ oc create secret generic github-cred --type=kubernetes.io/ssh-auth --dry-run=cli
       --format yaml > github-sealed.yaml
 ```
 
-2) Create a SealedSecret for Secret quay-cred:
+2) Get Quay config.json location
 
 ```console
-	oc create secret generic quay-cred --type="kubernetes.io/basic-auth" --dry-run=client \
-		--from-literal=username="YOUR_USERNAME" \
-		--from-literal=password="YOUR_PASSWORD" -o yaml | \
+  podman login quay.io -v
+```
+
+3) Create a SealedSecret for Secret quay-cred:
+
+```console
+	oc create secret generic quay-cred --type=kubernetes.io/dockerconfigjson --dry-run=client \
+		 --from-file=.dockerconfigjson=<config.json> -o yaml | \
     /usr/local/bin/kubeseal \
       --controller-name=sealed-secrets-controller \
       --controller-namespace=sealed-secrets \
       --format yaml > quay-sealed.yaml
 ```
 
-3) Note that to get Openshift Pipelines to use these secrets we add an annotation that will specify the web address the Secret is used to get access. 
+4) Note that to get Openshift Pipelines to use these secrets we add an annotation that will specify the web address the Secret is used to get access. 
       * for Secret github-cred add annotation: `tekton.dev/git-0: github.com` 
       * for Secret quay-cred add annotation: `tekton.dev/docker-0: quay.io`
 
-4) Create Argo CD ConfigMap and SealedSecret for using Argo sync tekton task:
+5) Create Argo CD ConfigMap and SealedSecret for using Argo sync tekton task:
 
 ```console
 ARGO_URL=$(oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}')
