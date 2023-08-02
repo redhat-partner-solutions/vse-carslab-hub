@@ -75,10 +75,10 @@ spec:
       # yamllint enable rule:line-length
     - openshiftVersion: "4.13"
       cpuArchitecture: x86_64
-      version: "413.92.202305021736-0"
+      version: "413.92.202307140015-0"
       # yamllint disable rule:line-length
-      url: https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.13/latest/rhcos-4.13.0-x86_64-live.x86_64.iso
-      rootFSUrl: https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.13/latest/rhcos-4.13.0-x86_64-live-rootfs.x86_64.img
+      url: https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.13/4.13.5/rhcos-4.13.5-x86_64-live.x86_64.iso
+      rootFSUrl: https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.13/4.13.5/rhcos-4.13.5-x86_64-live-rootfs.x86_64.img
       # yamllint enable rule:line-length
     - openshiftVersion: "4.14"
       cpuArchitecture: x86_64

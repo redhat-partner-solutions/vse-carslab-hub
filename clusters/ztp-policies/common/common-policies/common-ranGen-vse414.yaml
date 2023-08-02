@@ -1,0 +1,83 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: "common-du-vse414"
+  namespace: "ztp-common"
+spec:
+  bindingRules:
+    # These policies will correspond to all clusters with this label:
+    common-du-vse414: "true"
+  sourceFiles:
+    # Create operators policies that will be installed in all clusters
+    - fileName: SriovSubscription.yaml
+      policyName: "subscriptions-policy"
+    - fileName: SriovSubscriptionNS.yaml
+      policyName: "subscriptions-policy"
+    - fileName: SriovSubscriptionOperGroup.yaml
+      policyName: "subscriptions-policy"
+    - fileName: SriovOperatorStatus.yaml
+      policyName: "subscriptions-policy"
+    - fileName: PtpSubscription.yaml
+      policyName: "subscriptions-policy"
+    - fileName: PtpSubscriptionNS.yaml
+      policyName: "subscriptions-policy"
+    - fileName: PtpSubscriptionOperGroup.yaml
+      policyName: "subscriptions-policy"
+    - fileName: PtpOperatorStatus.yaml
+      policyName: "subscriptions-policy"
+    - fileName: ClusterLogNS.yaml
+      policyName: "subscriptions-policy"
+    - fileName: ClusterLogOperGroup.yaml
+      policyName: "subscriptions-policy"
+    - fileName: ClusterLogSubscription.yaml
+      policyName: "subscriptions-policy"
+    - fileName: ClusterLogOperatorStatus.yaml
+      policyName: "subscriptions-policy"
+    - fileName: StorageNS.yaml
+      policyName: "subscriptions-policy"
+    - fileName: StorageOperGroup.yaml
+      policyName: "subscriptions-policy"
+    - fileName: StorageSubscription.yaml
+      policyName: "subscriptions-policy"
+    - fileName: StorageOperatorStatus.yaml
+      policyName: "subscriptions-policy"
+    - fileName: ReduceMonitoringFootprint.yaml
+      policyName: "config-policy"
+    #
+    # These CRs are in support of installation from a disconnected registry
+    #
+    - fileName: OperatorHub.yaml
+      policyName: "config-policy"
+    - fileName: DefaultCatsrc.yaml
+      policyName: "config-policy"
+      # The Subscriptions all point to redhat-operators. The OperatorHub CR
+      # disables the defaults and this CR replaces redhat-operators with a
+      # CatalogSource pointing to the disconnected registry. Including both of
+      # these in the same policy orders their application to the cluster.
+      metadata:
+        name: redhat-operators
+      spec:
+        displayName: Telco 4.14 RH
+        # yamllint disable rule:line-length
+        image: quay.io/redhat-partner-solutions/prega/redhat-operator-index:v4.14
+        updateStrategy:
+          registryPoll:
+            interval: 10m0s
+    - fileName: DisconnectedICSP.yaml
+      policyName: "config-policy"
+      spec:
+        repositoryDigestMirrors:
+          - mirrors:
+              - brew.registry.redhat.io
+            source: registry-proxy.engineering.redhat.com
+          - mirrors:
+              - brew.registry.redhat.io/openshift4
+              - quay.io/redhat-partner-solutions/prega/openshift4
+            source: registry.redhat.io/openshift4
+          - mirrors:
+              - brew.registry.redhat.io/openshift-logging
+            source: registry.redhat.io/openshift-logging
+          - mirrors:
+              - quay.io/redhat-partner-solutions/prega/intel
+            source: registry.connect.redhat.com/intel

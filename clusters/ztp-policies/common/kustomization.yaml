@@ -6,7 +6,8 @@ resources:
  - ns.yaml
  # This policy is used for VSE Loki logging
  - common-policies/common-vseloki.yaml
-
+ # This policy is for common VSE 4.14 artifacts
+ - common-policies/common-vseextras.yaml
 
 generators:
  # This is common to all RAN deployments
@@ -14,6 +15,9 @@ generators:
  # yamllint disable-line rule:line-length
  # This is common to all RAN DU deployments for vRAN Solution Enablement's Synchronization Workgroup
  - common-policies/common-ranGen-vsesync.yaml
+ # This is common to all RAN DU deployments Testing 4.14
+ - common-policies/common-ranGen-vse414.yaml
+
 
  # yamllint disable-line rule:line-length
  # This group policy is for some Supermicro X11 based deployments:
