@@ -1,0 +1,32 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  # yamllint disable-line rule:line-length
+  # The name will be used to generate the placementBinding and placementRule names as {name}-placementBinding and {name}-placementRule
+  name: "fiesta-cars2-lab"
+  namespace: "ztp-site"
+spec:
+  bindingRules:
+    # These policies will correspond to all clusters with this label:
+    sites: "fiesta-cars2-lab"
+  mcp: "master"
+  sourceFiles:
+    - fileName: ClusterLogForwarder.yaml
+      policyName: "config-policy"
+      spec:
+        outputs:
+          - name: loki-infra
+            secret:
+              name: remote-logging-secret
+            type: loki
+            # yamllint disable-line rule:line-length
+            url: https://logging-loki-openshift-logging.apps.yukon.cars2.lab/api/logs/v1/infrastructure
+        pipelines:
+          - name: send-infra-logs
+            inputRefs:
+              - infrastructure
+            outputRefs:
+              - loki-infra
+            labels:
+              clustername: fiesta
