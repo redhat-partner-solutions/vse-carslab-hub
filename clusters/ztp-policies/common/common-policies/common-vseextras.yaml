@@ -1,0 +1,69 @@
+# yamllint disable-line rule:line-length
+# for this Policy to be implemented, the ManagedCluster SiteConfig must have "vseextras: "true"" as a label
+# Temporary for pre-ga 4.14 testing
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-vseextras
+  namespace: ztp-common
+  annotations:
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    ran.openshift.io/ztp-deploy-wave: "2"
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-catalogs
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: CatalogSource
+                metadata:
+                  name: certified-operators
+                  namespace: openshift-marketplace
+                spec:
+                  displayName: Telco 4.14 Certified
+                  # yamllint disable-line rule:line-length
+                  image: quay.io/redhat-partner-solutions/prega/certified-operator-index:v4.14
+                  publisher: Red Hat
+                  sourceType: grpc
+                  updateStrategy:
+                    registryPoll:
+                      interval: 10m0s
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-vseextras
+  namespace: ztp-common
+placementRef:
+  name: placement-policy-vseextras
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+  - name: policy-vseextras
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-vseextras
+  namespace: ztp-common
+spec:
+  clusterConditions:
+    - status: "True"
+      type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      # yamllint disable-line rule:line-length
+      - {key: vseextras, operator: In, values: ["true"]}
