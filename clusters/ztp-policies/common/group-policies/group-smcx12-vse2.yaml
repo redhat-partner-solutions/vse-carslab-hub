@@ -52,6 +52,12 @@ spec:
           ptp4lConf: |
             [ens6f0]
             masterOnly 1
+            [ens6f1]
+            masterOnly 1
+            [ens6f2]
+            masterOnly 1
+            [ens6f3]
+            masterOnly 1
             [global]
             #
             # Default Data Set
