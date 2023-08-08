@@ -33,7 +33,7 @@ spec:
                 spec:
                   displayName: Telco 4.14 Certified
                   # yamllint disable-line rule:line-length
-                  image: quay.io/redhat-partner-solutions/prega/certified-operator-index:v4.14
+                  image: registry.redhat.io/redhat/certified-operator-index:v4.14
                   publisher: Red Hat
                   sourceType: grpc
                   updateStrategy:
