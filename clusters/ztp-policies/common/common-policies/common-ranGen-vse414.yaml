@@ -78,6 +78,3 @@ spec:
           - mirrors:
               - brew.registry.redhat.io/openshift-logging
             source: registry.redhat.io/openshift-logging
-          - mirrors:
-              - quay.io/redhat-partner-solutions/prega/intel
-            source: registry.connect.redhat.com/intel

@@ -12,31 +12,17 @@ resources:
 generators:
  # This is common to all RAN deployments
  - common-policies/common-ranGen.yaml
- # yamllint disable-line rule:line-length
- # This is common to all RAN DU deployments for vRAN Solution Enablement's Synchronization Workgroup
- - common-policies/common-ranGen-vsesync.yaml
  # This is common to all RAN DU deployments Testing 4.14
  - common-policies/common-ranGen-vse414.yaml
 
-
- # yamllint disable-line rule:line-length
- # This group policy is for some Supermicro X11 based deployments:
- - group-policies/group-supermicro.yaml
- - group-policies/group-supermicro-validator.yaml
- # yamllint disable-line rule:line-length
- # This group policy is for some Supermicro X12 based deployments with SKU VSE-2:
- - group-policies/group-smcx12-vse2.yaml
- - group-policies/group-smcx12-vse2-validator.yaml
  # yamllint disable-line rule:line-length
  # This group policy is for all Dell R740 based deployments with SKU VSE-1:
  - group-policies/group-dellr740-vse1.yaml
  - group-policies/group-dellr740-vse1-validator.yaml
  # yamllint disable-line rule:line-length
- # This group validator policy is for some Supermicro X11 based deployments:
- - group-policies/group-vdu.yaml
- - group-policies/group-vdu-validator.yaml
-
- # yamllint disable-line rule:line-length
+ # This group policy is for some Supermicro X12 based deployments with SKU VSE-2:
+ - group-policies/group-smcx12-vse2.yaml
+ - group-policies/group-smcx12-vse2-validator.yaml
 
  # This group policy is for all compressed 3-node cluster deployments:
  # - group-du-3node-ranGen.yaml
