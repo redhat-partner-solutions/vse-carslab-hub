@@ -12,7 +12,7 @@ resources:
 generators:
  # This is common to all RAN deployments
  - common-policies/common-ranGen.yaml
- # This is common to all RAN DU deployments Testing 4.14
+ # This is common to all VSE RAN DU deployments Testing 4.14
  - common-policies/common-ranGen-vse414.yaml
 
  # yamllint disable-line rule:line-length
@@ -23,6 +23,10 @@ generators:
  # This group policy is for some Supermicro X12 based deployments with SKU VSE-2:
  - group-policies/group-smcx12-vse2.yaml
  - group-policies/group-smcx12-vse2-validator.yaml
+ # yamllint disable-line rule:line-length
+ # This group policy is for some Dell R740XD based deployments with SKU VSE-3:
+ - group-policies/group-dellr740xd-vse3.yaml
+ - group-policies/group-dellr740xd-vse3-validator.yaml
 
  # This group policy is for all compressed 3-node cluster deployments:
  # - group-du-3node-ranGen.yaml
