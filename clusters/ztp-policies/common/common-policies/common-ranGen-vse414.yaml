@@ -58,7 +58,7 @@ spec:
       metadata:
         name: redhat-operators
       spec:
-        displayName: Telco 4.14 RH
+        displayName: Telco 4.14 VSE
         # yamllint disable rule:line-length
         image: quay.io/redhat-partner-solutions/prega/redhat-operator-index:v4.14
         updateStrategy:
