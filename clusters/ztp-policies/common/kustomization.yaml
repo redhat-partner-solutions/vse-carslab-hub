@@ -28,6 +28,9 @@ generators:
  - group-policies/group-dellr740xd-vse3.yaml
  - group-policies/group-dellr740xd-vse3-validator.yaml
 
+ # This group policy is for some Dell R740 based deployments with SKU VSE-5:
+ - group-policies/group-dellr740-vse5.yaml
+ - group-policies/group-dellr740-vse5-validator.yaml
  # This group policy is for all compressed 3-node cluster deployments:
  # - group-du-3node-ranGen.yaml
  # yamllint disable-line rule:line-length
