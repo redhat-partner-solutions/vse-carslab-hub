@@ -1,0 +1,47 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generators:
+ - puffin-siteconfig.yaml
+
+resources:
+ - github.com/redhat-partner-solutions/vse-ocp-bases/base/ztp/site-config?ref=main
+
+patches:
+ - target:
+    kind: Secret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'puffin-bmc-creds-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'puffin'
+     - op: replace
+       path: /data/username
+       value: 'cm9vdA=='
+     - op: replace
+       path: /data/password
+       value: 'Y2FsdmluCg=='
+ - target:
+    kind: SealedSecret
+   # yamllint disable rule:line-length
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'assisted-deployment-pull-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'puffin'
+     - op: replace
+       path: /spec/encryptedData/.dockerconfigjson
+       value: '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'
+     - op: replace
+       path: /spec/encryptedData/type
+     - op: replace
+       path: /spec/template/metadata/name
+       value: 'puffin-bmc-creds-secret'
+     - op: replace
+       path: /spec/template/metadata/namespace
+       value: 'puffin'
