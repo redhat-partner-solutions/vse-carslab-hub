@@ -9,6 +9,14 @@ data:
     names:
       - node_hwmon_temp_celsius
       - node_hwmon_power_average_watt
+      - openshift_ptp_clock_state
+      - openshift_ptp_delay_ns
+      - openshift_ptp_frequency_adjustment_ns
+      - openshift_ptp_interface_role
+      - openshift_ptp_max_offset_ns
+      - openshift_ptp_offset_ns
+      - openshift_ptp_process_restart_count
+      - openshift_ptp_process_status
     collect_rules:
       - group: -SNOResourceUsage
   ### This ConfigMap overrides default behavior of collecting
