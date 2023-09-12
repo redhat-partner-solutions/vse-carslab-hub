@@ -25,11 +25,11 @@ spec:
           type: vector
         curation:
           curator:
-            schedule: 30 3 * * *  
+            schedule: 30 3 * * *
     # The setting below overrides the default "worker" selector predefined in
-    # the source-crs. The change is recommended on SNOs configured with PTP 
+    # the source-crs. The change is recommended on SNOs configured with PTP
     # event notification for forward compatibility with possible SNO expansion.
-    # When the default setting is left intact, then in case of an SNO 
+    # When the default setting is left intact, then in case of an SNO
     # expansion with one or more workers, PTP operator
     # would not create linuxptp-daemon containers on the worker node(s). Any
     # attempt to change the daemonsetNodeSelector will result in ptp daemon
@@ -160,6 +160,8 @@ spec:
             manufacturerIdentity 00:00:00
             userDescription ;
             timeSource 0xA0
+          ptpSettings:
+            logReduce: "false"
           ts2phcConf: |
             [nmea]
             ts2phc.master 1
@@ -176,6 +178,7 @@ spec:
             [ens6f0]
             ts2phc.extts_polarity rising
             ts2phc.extts_correction 0
+          ts2phcOpts: "-m"
 #    - fileName: PtpConfigSlave.yaml   # Change to PtpConfigSlaveCvl.yaml for ColumbiaVille NIC
 #      policyName: "config-policy"
 #      metadata:
@@ -218,9 +221,9 @@ spec:
               aqDepthLog2: 4
     - fileName: SriovOperatorConfig.yaml
       policyName: "config-policy"
-      # For existing clusters with node selector set as "master", 
+      # For existing clusters with node selector set as "master",
       # change the complianceType to "mustonlyhave".
-      # After complying with the policy, the complianceType can 
+      # After complying with the policy, the complianceType can
       # be reverted to "musthave"
       complianceType: musthave
       spec:
