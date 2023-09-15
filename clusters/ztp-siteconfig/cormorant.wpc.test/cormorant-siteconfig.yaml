@@ -29,8 +29,8 @@ spec:
       clusterLabels:
         common-du-vse414: true
         group-dellr740xd-vse3: ""
-        sites: "cormorant-wpc-test"
-        vseloki: true
+        #sites: "cormorant-wpc-test"
+        #vseloki: true
         vseextras: true
       clusterNetwork:
         - cidr: 10.128.0.0/14

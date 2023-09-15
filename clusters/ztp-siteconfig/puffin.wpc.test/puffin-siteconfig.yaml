@@ -29,8 +29,8 @@ spec:
       clusterLabels:
         common-du-prega414: true
         group-dellr740-vse1: ""
-        sites: "puffin-wpc-test"
-        vseloki: true
+        #sites: "puffin-wpc-test"
+        #vseloki: true
         vseextras: true
       clusterNetwork:
         - cidr: 10.128.0.0/14

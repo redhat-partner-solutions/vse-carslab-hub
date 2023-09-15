@@ -29,8 +29,8 @@ spec:
       clusterLabels:
         common-du-vse414: true
         group-dellr740-vse5: ""
-        sites: "tern-wpc-test"
-        vseloki: true
+        #sites: "tern-wpc-test"
+        #vseloki: true
         vseextras: true
       clusterNetwork:
         - cidr: 10.128.0.0/14
