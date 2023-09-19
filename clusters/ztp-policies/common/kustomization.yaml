@@ -14,6 +14,7 @@ generators:
  - common-policies/common-ranGen-vse414.yaml
   # This is common to all PreGA RAN DU deployments using the Partner Index
  - common-policies/common-ranGen-prega414.yaml
+ - common-policies/common-ranGen-prega414-latest.yaml
 
  # yamllint disable-line rule:line-length
  # This group policy is for all Dell R740 based deployments with SKU VSE-1:
