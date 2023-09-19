@@ -28,7 +28,10 @@ generators:
  # This group policy is for some Dell R740XD based deployments with SKU VSE-3:
  - group-policies/group-dellr740xd-vse3.yaml
  - group-policies/group-dellr740xd-vse3-validator.yaml
-
+ # yamllint disable-line rule:line-length
+ # This group policy is for some Dell R760 based deployments with SKU VSE-4:
+ - group-policies/group-dellr760-vse4.yaml
+ - group-policies/group-dellr760-vse4-validator.yaml
  # This group policy is for some Dell R740 based deployments with SKU VSE-5:
  - group-policies/group-dellr740-vse5.yaml
  - group-policies/group-dellr740-vse5-validator.yaml
