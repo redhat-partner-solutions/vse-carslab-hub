@@ -60,7 +60,7 @@ spec:
       spec:
         displayName: Telco 4.14 PreGA Latest
         # yamllint disable rule:line-length
-        image: quay.io/prega/test/prega/redhat-operator-index:v4.14-20230918T143957
+        image: quay.io/prega/redhat-operator-index:v4.14
         updateStrategy:
           registryPoll:
             interval: 10m0s

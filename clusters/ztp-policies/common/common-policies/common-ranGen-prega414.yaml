@@ -12,8 +12,6 @@ spec:
     # Create operators policies that will be installed in all clusters
     - fileName: SriovSubscription.yaml
       policyName: "subscriptions-policy"
-      spec:
-        channel: "4.14"
     - fileName: SriovSubscriptionNS.yaml
       policyName: "subscriptions-policy"
     - fileName: SriovSubscriptionOperGroup.yaml
@@ -60,9 +58,9 @@ spec:
       metadata:
         name: redhat-operators
       spec:
-        displayName: Telco 4.14 PreGA Official
+        displayName: Telco 4.14 PreGA Sep18
         # yamllint disable rule:line-length
-        image: quay.io/prega/redhat-operator-index:v4.14
+        image: quay.io/prega/test/prega/redhat-operator-index:v4.14-20230918T143957
         updateStrategy:
           registryPoll:
             interval: 10m0s
