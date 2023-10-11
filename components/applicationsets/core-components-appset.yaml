@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: cluster
   namespace: openshift-gitops
-  finalizers:
-    - null
 spec:
   generators:
     - git:
