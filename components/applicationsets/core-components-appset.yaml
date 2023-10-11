@@ -4,6 +4,8 @@ kind: ApplicationSet
 metadata:
   name: cluster
   namespace: openshift-gitops
+  finalizers:
+    - null
 spec:
   generators:
     - git:
@@ -16,16 +18,7 @@ spec:
       name: '{{path.basename}}'
     spec:
       project: default
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        retry:
-          limit: 15
-          backoff:
-            duration: 15s
-            factor: 2
-            maxDuration: 5m
+      syncPolicy: {}
       source:
         repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub
         targetRevision: cars2

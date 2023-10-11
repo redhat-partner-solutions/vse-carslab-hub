@@ -11,7 +11,7 @@ jobs:
   kustomize-lint:
     runs-on: ubuntu-latest
     env:
-      KUSTOMIZE_VERSION: 3.9.4
+      KUSTOMIZE_VERSION: 4.5.7
     steps:
       - name: Install Kustomize
         # yamllint disable rule:line-length
@@ -19,10 +19,11 @@ jobs:
           sudo curl -L -o /usr/bin/kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64
           sudo chmod +x /usr/bin/kustomize
       - name: Checkout cnf-features-deploy repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: openshift-kni/cnf-features-deploy
           path: cnf-features-deploy
+          ref: release-4.13
       - name: Install siteconfig plugin
         run: |
           cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/siteconfig-generator-kustomize-plugin
