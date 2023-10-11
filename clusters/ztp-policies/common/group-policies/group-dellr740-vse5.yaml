@@ -154,6 +154,8 @@ spec:
             manufacturerIdentity 00:00:00
             userDescription ;
             timeSource 0xA0
+          ptpSettings:
+            logReduce: "false"
           ts2phcConf: |
             [nmea]
             ts2phc.master 1
@@ -170,6 +172,7 @@ spec:
             [ens1f0]
             ts2phc.extts_polarity rising
             ts2phc.extts_correction 0
+          ts2phcOpts: "-m"
 
 #    - fileName: PtpConfigSlave.yaml   # Change to PtpConfigSlaveCvl.yaml for ColumbiaVille NIC
 #      policyName: "config-policy"
