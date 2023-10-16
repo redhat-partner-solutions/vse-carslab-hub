@@ -3,4 +3,4 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
 resources:
-  - github.com/redhat-cop/gitops-catalog/sealed-secrets-operator/overlays/default?ref=main
+  - github.com/redhat-cop/gitops-catalog/sealed-secrets-operator/operator/overlays/default?ref=main
