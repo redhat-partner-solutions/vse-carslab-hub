@@ -30,6 +30,9 @@ spec:
       policyName: "subscriptions-policy"
     - fileName: ClusterLogOperGroup.yaml
       policyName: "subscriptions-policy"
+      spec:
+        targetNamespaces: []
+        upgradeStrategy: Default
     - fileName: ClusterLogSubscription.yaml
       policyName: "subscriptions-policy"
     - fileName: ClusterLogOperatorStatus.yaml

@@ -1,0 +1,47 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generators:
+ - falcon-siteconfig.yaml
+
+resources:
+ - github.com/redhat-partner-solutions/vse-ocp-bases/base/ztp/site-config?ref=main
+
+patches:
+ - target:
+    kind: Secret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'du1-2-falcon-cars2-lab-bmc-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'falcon'
+     - op: replace
+       path: /data/username
+       value: 'QURNSU4='
+     - op: replace
+       path: /data/password
+       value: 'UmVkSGF0VGVsY28hMjM0'
+ - target:
+    kind: SealedSecret
+   # yamllint disable rule:line-length
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'assisted-deployment-pull-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'falcon'
+     - op: replace
+       path: /spec/encryptedData/.dockerconfigjson
+       value: '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'
+     - op: replace
+       path: /spec/encryptedData/type
+     - op: replace
+       path: /spec/template/metadata/name
+       value: 'du1-2-falcon-cars2-lab-bmc-secret'
+     - op: replace
+       path: /spec/template/metadata/namespace
+       value: 'falcon'
