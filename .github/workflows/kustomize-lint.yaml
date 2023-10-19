@@ -33,7 +33,7 @@ jobs:
           cd /home/runner/work/vse-carslab-hub/vse-carslab-hub/cnf-features-deploy/ztp/policygenerator-kustomize-plugin
           make build KUSTOMIZE_DIR=/home/runner/kustomize POLICYGEN_KUSTOMIZE_DIR=/home/runner/kustomize/plugin/ran.openshift.io/v1/policygentemplate
       - name: Code Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: main
       - name: Validate Manifests
