@@ -10,6 +10,8 @@ resources:
  - common-policies/common-vseextras.yaml
 
 generators:
+  # This is common to all RAN DU deployments
+ - common-policies/common-du-ranGen.yaml
   # This is common to all PreGA RAN DU deployments using the Partner Index
  - common-policies/common-ranGen-prega414-latest.yaml
 
