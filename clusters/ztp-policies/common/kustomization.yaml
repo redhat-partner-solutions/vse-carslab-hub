@@ -5,15 +5,17 @@ kind: Kustomization
 resources:
  - ns.yaml
  # This policy is used for VSE Loki logging
- - common-policies/common-vseloki.yaml
+ #- common-policies/common-vseloki.yaml
  # This policy is for common VSE 4.14 artifacts
- - common-policies/common-vseextras.yaml
+ #- common-policies/common-vseextras.yaml
 
 generators:
   # This is common to all RAN DU deployments
  - common-policies/common-du-ranGen.yaml
+  # This is common to all RAN DU deployments using 4.14 of the ZTP plugin
+ - common-policies/common-du-ranGen-414.yaml
   # This is common to all PreGA RAN DU deployments using the Partner Index
- - common-policies/common-ranGen-prega414-latest.yaml
+ #- common-policies/common-ranGen-prega414-latest.yaml
 
  # yamllint disable-line rule:line-length
  # This group policy is for all Dell R740 based deployments with SKU VSE-1:
