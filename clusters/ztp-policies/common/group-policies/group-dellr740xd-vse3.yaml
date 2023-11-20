@@ -18,8 +18,10 @@ spec:
         collection:
           type: vector
         curation:
+          type: curator
           curator:
             schedule: 30 3 * * *
+        managementState: Managed
     # The setting below overrides the default "worker" selector predefined in
     # the source-crs. The change is recommended on SNOs configured with PTP
     # event notification for forward compatibility with possible SNO expansion.
