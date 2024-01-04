@@ -37,6 +37,7 @@ spec:
     - fileName: ClusterLogSubscription.yaml
       policyName: "subscriptions-policy"
       spec:
+        channel: stable-5.7
         source: redhat-operators
     - fileName: ClusterLogOperatorStatus.yaml
       policyName: "subscriptions-policy"
