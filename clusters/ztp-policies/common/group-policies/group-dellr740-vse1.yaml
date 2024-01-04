@@ -14,14 +14,7 @@ spec:
   sourceFiles:
     - fileName: ClusterLogging.yaml
       policyName: "config-policy"
-      spec:
-        collection:
-          type: vector
-        curation:
-          type: curator
-          curator:
-            schedule: 30 3 * * *
-        managementState: Managed
+
     # The setting below overrides the default "worker" selector predefined in
     # the source-crs. The change is recommended on SNOs configured with PTP 
     # event notification for forward compatibility with possible SNO expansion.
@@ -140,6 +133,64 @@ spec:
           plugins:
             e810:
               enableDefaultConfig: true
+              settings:
+                LocalMaxHoldoverOffSet: 1500
+                LocalHoldoverTimeout: 14400
+                MaxInSpecOffset: 100
+            ublxCmds:
+              - args: #ubxtool -P 29.20 -z CFG-HW-ANT_CFG_VOLTCTRL,1
+                - "-P"
+                - "29.20"
+                - "-z"
+                - "CFG-HW-ANT_CFG_VOLTCTRL,1"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -e GPS
+                  - "-P"
+                  - "29.20"
+                  - "-e"
+                  - "GPS"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -d Galileo
+                  - "-P"
+                  - "29.20"
+                  - "-d"
+                  - "Galileo"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -d GLONASS
+                  - "-P"
+                  - "29.20"
+                  - "-d"
+                  - "GLONASS"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -d BeiDou
+                  - "-P"
+                  - "29.20"
+                  - "-d"
+                  - "BeiDou"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -d SBAS
+                  - "-P"
+                  - "29.20"
+                  - "-d"
+                  - "SBAS"
+                reportOutput: false
+              - args: #ubxtool -P 29.20 -t -w 5 -v 1 -e SURVEYIN,600,50000
+                  - "-P"
+                  - "29.20"
+                  - "-t"
+                  - "-w"
+                  - "5"
+                  - "-v"
+                  - "1"
+                  - "-e"
+                  - "SURVEYIN,600,50000"
+                reportOutput: true
+              - args: #ubxtool -P 29.20 -p MON-HW
+                  - "-P"
+                  - "29.20"
+                  - "-p"
+                  - "MON-HW"
+                reportOutput: true              
           ptp4lConf: |
             [ens2f0]
             masterOnly 1
