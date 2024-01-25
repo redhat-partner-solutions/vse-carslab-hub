@@ -14,7 +14,7 @@ patches:
    patch: |-
      - op: replace
        path: /metadata/name
-       value: 'bevo2-bmc-creds-secret'
+       value: 'r750-2-bmc-creds-secret'
      - op: replace
        path: /metadata/namespace
        value: 'bevo2'
@@ -41,7 +41,7 @@ patches:
        path: /spec/encryptedData/type
      - op: replace
        path: /spec/template/metadata/name
-       value: 'bevo2-bmc-creds-secret'
+       value: 'r750-2-bmc-creds-secret'
      - op: replace
        path: /spec/template/metadata/namespace
        value: 'bevo2'
