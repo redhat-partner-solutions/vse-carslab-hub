@@ -82,8 +82,8 @@ spec:
       spec:
         cpu:
           # These must be tailored for the specific hardware platform
-          isolated: "1,3,63,65,67-127"
-          reserved: "0,2,64,66"
+          isolated: "24-31,88-95,33-62,97-126"
+          reserved: "0-23,64-87,32,63,96,127"
         hugepages:
           defaultHugepagesSize: 1G
           pages:
